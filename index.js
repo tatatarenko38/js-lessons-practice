@@ -372,21 +372,21 @@
 //   console.log(num);
 // }
 
-let range = {
-  from: 1,
-  to: 5,
+// let range = {
+//   from: 1,
+//   to: 5,
 
-  [Symbol.iterator]() {
-    this.current = this.from;
+//   [Symbol.iterator]() {
+//     this.current = this.from;
 
-    return this;
-  },
-  next() {
-    return this.current <= this.to
-      ? { done: false, value: this.current++ }
-      : { done: true };
-  },
-};
+//     return this;
+//   },
+//   next() {
+//     return this.current <= this.to
+//       ? { done: false, value: this.current++ }
+//       : { done: true };
+//   },
+// };
 
 // for (let num of range) {
 //   console.log(num);
@@ -399,11 +399,11 @@ let range = {
 //   result = iterator.next();
 // } while (!result.done);
 
-const arr = [1, 2, 3, 4, 5];
-const iterator = arr[Symbol.iterator]();
-result = iterator.next();
+// const arr = [1, 2, 3, 4, 5];
+// const iterator = arr[Symbol.iterator]();
+// result = iterator.next();
 
-do {
-  console.log(result.value);
-  result = iterator.next();
-} while (!result.done);
+// do {
+//   console.log(result.value);
+//   result = iterator.next();
+// } while (!result.done);
