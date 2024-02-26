@@ -407,3 +407,155 @@
 //   console.log(result.value);
 //   result = iterator.next();
 // } while (!result.done);
+
+//Вбудовані можливості для масивів////////////////////////////////////////////////////////////////////
+
+//Створення масиву з переданного значення////////////
+
+// const obj = {
+//   0: 'Hello',
+//   1:'world',
+//   2:'!!!',
+//   length:3,
+//   prefix:'():'
+// }
+// console.log(
+//   Array.from(
+//       obj,
+//       function(elem, index){
+//           return `${this.prefix}${elem}`;
+//       },
+//       obj
+//   )
+// );
+
+//Перевірка на масив//////////////////////////////////////////
+
+// const obj = {
+//   0: "Hello",
+//   1: "world",
+//   2: "!!!",
+//   length: 3,
+//   prefix: "():",
+// };
+// const arr = Array.from(
+//   obj,
+//   function (elem, index) {
+//     return `${this.prefix}${elem}`;
+//   },
+//   obj
+// );
+// console.log(Array.isArray(arr));
+
+//Новий масив з заданними значеннями//////////////////////
+
+// console.log(Array.of(1,2,3,4,5));
+
+// const arr1 =[1,2,3];
+// const arr2 =[4,5,6];
+
+// console.log(Array.of(arr1,arr2));
+
+// console.log(Array.of(...arr1, ...arr2));
+
+// //АБО
+// console.log([...arr1, ...arr2])
+
+//ОТРИМАННЯ ЕЛЕМЕНТА ЗА ІНДЕКСОМ В МАСИВІ////////////////////
+// const arr1 =[1,2,3];
+// const arr2 =[4,5,6];
+
+// console.log(arr1.at(1));
+
+//ДОДАВАННЯ ЕЛЕМЕНТІВ У МАСИВ//////////
+
+//const arr1 =[1,2,3];
+
+//console.log(arr1.push(20,30,50,90));
+
+// console.log(-(arr1.length - arr1.push(20,30,50,90)));
+
+// console.log(arr1);
+
+//ВИДАЛЕННЯ ОСТАННЬОГО ЕЛЕМЕНТУ/////////////////////
+// const arr2 =[4,5,6];
+//   console.log(arr2.pop());
+//   console.log(arr2);
+
+//ЗСУВ ЕЛЕМЕНТІВ МАСИВУ - ВИДАЛЕННЯ ПЕРШОГО ЕЛЕМЕНТУ....
+// const arr3 =[2,4,5,7,9];
+// console.log(arr3.shift());
+// console.log(arr3);
+
+//СКАСУВАННЯ ЗСУВУ - ДОДАВАННЯ ПЕРШИХ ЕЛЕМЕНТІВ.....
+// const arr4 = [1,2,3,4,5];
+// console.log(arr4.unshift(60,70));
+// console.log(arr4);
+
+//ЧИ ВКЛЮЧАЄ МАСИВ ПЕВНИЙ ЕЛЕМЕНТ......
+// const arr4 = [30, 70, 90];
+// console.log(arr4.includes(70));
+
+//ПОШУК ІНДЕКСУ ЕЛЕМЕНТА за значенням.......знаходить перший ел. з початку
+// const arr5 = [35, 27, 76, 98, 45, 76];
+// console.log(arr5.indexOf(76));
+// console.log(arr5.indexOf(100));
+
+//ПОШУК ІНДЕКСУ ЕЛЕМЕНТА за значенням.......знаходить перший ел. з кінця
+// const arr5 = [35, 27, 76, 98, 45, 76];
+// console.log(arr5.lastIndexOf(76));
+// console.log(arr5.lastindexOf(100));
+
+//ОБ'ЄДНАННЯ МАСИВІВ........
+// const arr1 = [1,2,3,4,5];
+// const arr2 = [30, 70, 90];
+
+// const arr3 = arr1.concat(...arr2);
+// console.log(arr3);
+
+//КОПІЮВАННЯ ЕЛЕМЕНТІВ У МАСИВІ//////
+// const arr1 =[0,1,2,3,4,5,6,7,8,9];
+// console.log(arr1);
+//вказ. індекси - з якого заміняєм, що вставляєм - останній не враховується
+// arr1.copyWithin(2,6,9)
+
+// console.log(arr1);
+
+//ЗАПОВНЕННЯ МАСИВУ
+// const arr1 =[0,1,2,3,4,5,6,7,8,9];
+// console.log(arr1);
+
+// arr1.fill(345,5,7)
+
+// console.log(arr1);
+
+//РЕВЕРС МАСИВУ.....
+// const arr1=[10,20,30,40];
+// arr1.reverse();
+// console.log(arr1);
+
+//ФІЛЬТРУВАННЯ МАСИВУ.........
+// const arr1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// const filterFn = (value, index, array) => value % 2 === 0;
+// const filterArr = arr1.filter(filterFn);
+// console.log(filterArr);
+
+//СОРТУВАННЯ МАСИВУ.....в порядку зростання
+// const sortFn = (elem1, elem2) => elem1 - elem2;
+// const sortedArr = [3,45,6,23,67,31].sort(sortFn);
+// console.log(sortedArr);
+
+//ПЕРЕВІРКА УМОВИ ДЛЯ КОЖНОГО ЕЛЕМЕНТУ МАСИВУ...
+// const arr = [1,3,2,5,4,8];
+// console.log(arr.every((elem, index, array)=>elem>=0));
+
+// const arr1 = [1,3,-2,5,-4,8];
+// console.log(arr1.every((elem, index, array)=>elem>=0));
+
+//ПЕРЕВІРКА НА ХОЧА Б ОДИН ЕЛЕМЕНТ....
+// const arr = [1, 3, 2, 5, 4, 8];
+// console.log(arr.some((elem, index, array) => elem < 0));
+
+// const arr1 = [1, 3, -2, 5, -4, 8];
+// console.log(arr1.some((elem, index, array) => elem < 0));
