@@ -559,3 +559,189 @@
 
 // const arr1 = [1, 3, -2, 5, -4, 8];
 // console.log(arr1.some((elem, index, array) => elem < 0));
+
+//ЧАСТИНА 2/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//ПОШУК ЕЛЕМЕНТУ У МАСИВІ..................................
+// const userList = [
+//   { id: 1, name: "Dima", age: 19 },
+//   { id: 78, name: "Ivan", age: 35 },
+//   { id: 543, name: "Anton", age: 41 },
+// ];
+// let minAge =30;
+// const userBigAge = userList.find(({age}) => age >=minAge);
+// console.log(userBigAge);
+
+//ПОШУК ІНДЕКСУ У МАСИВІ..................................
+//якщо не знайдено, то повертає -1
+// const userList = [
+//     { id: 1, name: "Dima", age: 19 },
+//     { id: 78, name: "Ivan", age: 35 },
+//     { id: 543, name: "Anton", age: 41 },
+//   ];
+//   let minAge =30;
+//   const userBigAge = userList.findIndex(({age}) => age >=minAge);
+//   console.log(userBigAge);
+
+//ПОШУК ОСТАННЬОГО ЕЛЕМЕНТУ У МАСИВІ..................................
+//   const userList = [
+//   { id: 1, name: "Dima", age: 19 },
+//   { id: 78, name: "Ivan", age: 35 },
+//   { id: 543, name: "Anton", age: 41 },
+// ];
+// let minAge =30;
+// const userBigAge = userList.findLast(({age}) => age >=minAge);
+// console.log(userBigAge);
+
+//ПОШУК ОСТАННЬОГО ІНДЕКСУ У МАСИВІ..................................
+//якщо не знайдено, то повертає -1
+// const userList = [
+//     { id: 1, name: "Dima", age: 19 },
+//     { id: 78, name: "Ivan", age: 35 },
+//     { id: 543, name: "Anton", age: 41 },
+//   ];
+//   let minAge =30;
+//   const userBigAge = userList.findLastIndex(({age}) => age >=minAge);
+//   console.log(userBigAge);
+
+//КЛЮЧИ МАСИВУ....................................................
+// const userList = [
+//   { id: 1, name: "Dima", age: 19 },
+//   { id: 78, name: "Ivan", age: 35 },
+//   { id: 543, name: "Anton", age: 41 },
+// ];
+// const iter =userList.keys();
+// for (const elem of iter){
+//     console.log(elem);
+// }
+
+//ЗНАЧЕННЯ МАСИВУ....................................................
+// const userList = [
+//   { id: 1, name: "Dima", age: 19 },
+//   { id: 78, name: "Ivan", age: 35 },
+//   { id: 543, name: "Anton", age: 41 },
+// ];
+// const iter =userList.values();
+// for (const elem of iter){
+//     console.log(elem);
+// }
+
+//ОБ'ЄДНАННЯ МАСИВУ................................
+// const arr = ["apple", "milk", "bread", "water"];
+// console.log(arr.join(", "));
+
+//ВИДАЛЕННЯ ТА ВСТАВКА ЕЛЕМЕНТЫВ МАСИВУ.............
+// const arr = ["apple", "milk", "bread", "water", "hotdog"];
+// const arrSmall = arr.splice(1, 2, "tea", "cheese");
+// console.log(arrSmall);
+// console.log(arr);
+
+//Вирізати але не змінити попередній масив
+// const arr1 = ["apple", "milk", "bread", "water", "hotdog"];
+// const arrSmaller = [...arr1].splice(1, 2, "tea", "cheese");
+// console.log(arrSmaller);
+// console.log(arr1);
+
+//Просто видалити
+// const arr = ["apple", "milk", "bread", "water", "hotdog"];
+// const arrSmall = arr.splice(1, 2);
+// console.log(arrSmall);
+// console.log(arr);
+
+//Просто додати
+// const arr = ["apple", "milk", "bread", "water", "hotdog"];
+// const arrSmall = arr.splice(1, 0, ...userList);
+// console.log(arrSmall);
+// console.log(arr);
+
+//КОПІЯ ЧАСТИНИ МАСИВУ.........................
+// const arr = ["apple", "milk", "bread", "water", "hotdog"];
+// const arrSmall = arr.slice(1, 3);
+// console.log(arrSmall);
+// console.log(arr);
+
+//ЗВЕДЕННЯ МАСИВУ.............................
+//сумма всіх балансів//////////////////////
+// const userList = [
+//   { id: 1, name: "Dima", age: 19, balans: 150 },
+//   { id: 78, name: "Ivan", age: 35, balans: 10500 },
+//   { id: 543, name: "Anton", age: 41, balans: 0 },
+// ];
+// const totalBalans = userList.reduce((num, user) => num + user.balans, 0);
+// console.log(totalBalans);
+// найбільший вік/////////////////////////////////////
+// const result = userList.reduce(
+//   (num, user, userIndex, array) => {
+//     console.log(num, user.age);
+//     return user.age > num ? user.age : num;
+//   },
+//   1
+// );
+// console.log(result);
+
+//ЗВОРОТНЄ ЗВЕДЕННЯ МАСИВУ.............................
+//найбільший вік, але порівняння з кінця
+// const userList = [
+//     { id: 1, name: "Dima", age: 19, balans: 150 },
+//     { id: 78, name: "Ivan", age: 35, balans: 10500 },
+//     { id: 543, name: "Anton", age: 41, balans: 0 },
+//   ];
+//   const result = userList.reduceRight(
+//   (num, user, userIndex, array) => {
+//     console.log(num, user.age);
+//     return user.age > num ? user.age : num;
+//   },
+//   1
+// );
+// console.log(result);
+
+//НОВИЙ МАСИВ ДЛЯ КОЖНОГО ЕЛЕМЕНТА/////////////////////////////////
+//  const userList = [
+//         { id: 1, name: "Dima", age: 19, balans: 150 },
+//         { id: 78, name: "Ivan", age: 35, balans: 10500 },
+//         { id: 543, name: "Anton", age: 41, balans: 0 },
+//       ];
+
+      //створили масив користувачів
+    //   const result = userList.map((user, index, array) =>{
+    //     return user.name;
+      //})
+     // console.log(result.join(", "));
+      //скільки не вистачає, щоб баланс був 1000
+    //   const result = userList.map((user, index, array) =>{
+    //     user.balansLimit = 1000 - user.balans;
+    //     if(user.balansLimit<0){
+    //         user.balansLimit=0;
+    //     }
+    //     return user;
+    //   })
+    //   console.log(result);
+
+      //РОЗГОРТАННЯ ВКЛАДЕНИХ МАСИВІВ......................................
+    //   const flatArray =[[[111,222],[333,444]],[555,666],[777,888]];
+    //   console.log(flatArray.flat());
+    //   console.log(flatArray.flat(2));
+
+    //НОВИЙ РОЗГОРНУТИЙ МАСИВ ДЛЯ КОЖНОГО ЕЛЕМЕНТА.....................
+    //const flatArray =[[[105,210],[220,350]],[[110,230],[240,350]]];
+    //різниця між елементами масиву
+    // const result = flatArray.flatMap((el => {
+    //     return el.map((it) =>{
+    //         return it[0] - it[1];
+    //     })
+    // }))
+    // console.log (result);
+
+    //ПЕРЕБРАТИ МАСИВ...............................................
+    // const flatArray =[[[105,210],[220,350]],[[110,230],[240,350]]];
+    //різниця між елементами масиву
+    // const result = flatArray.flatMap((el => {
+    //     return el.map((it) =>{
+    //         return it[0] - it[1];
+    //     });
+    // }));
+    // console.log (result);
+    // result.forEach((elem, index, array) => {
+    //     console.log(elem);
+    // });
+
