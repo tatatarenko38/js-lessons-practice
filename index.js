@@ -702,46 +702,295 @@
 //         { id: 543, name: "Anton", age: 41, balans: 0 },
 //       ];
 
-      //створили масив користувачів
-    //   const result = userList.map((user, index, array) =>{
-    //     return user.name;
-      //})
-     // console.log(result.join(", "));
-      //скільки не вистачає, щоб баланс був 1000
-    //   const result = userList.map((user, index, array) =>{
-    //     user.balansLimit = 1000 - user.balans;
-    //     if(user.balansLimit<0){
-    //         user.balansLimit=0;
-    //     }
-    //     return user;
-    //   })
-    //   console.log(result);
+//створили масив користувачів
+//   const result = userList.map((user, index, array) =>{
+//     return user.name;
+//})
+// console.log(result.join(", "));
+//скільки не вистачає, щоб баланс був 1000
+//   const result = userList.map((user, index, array) =>{
+//     user.balansLimit = 1000 - user.balans;
+//     if(user.balansLimit<0){
+//         user.balansLimit=0;
+//     }
+//     return user;
+//   })
+//   console.log(result);
 
-      //РОЗГОРТАННЯ ВКЛАДЕНИХ МАСИВІВ......................................
-    //   const flatArray =[[[111,222],[333,444]],[555,666],[777,888]];
-    //   console.log(flatArray.flat());
-    //   console.log(flatArray.flat(2));
+//РОЗГОРТАННЯ ВКЛАДЕНИХ МАСИВІВ......................................
+//   const flatArray =[[[111,222],[333,444]],[555,666],[777,888]];
+//   console.log(flatArray.flat());
+//   console.log(flatArray.flat(2));
 
-    //НОВИЙ РОЗГОРНУТИЙ МАСИВ ДЛЯ КОЖНОГО ЕЛЕМЕНТА.....................
-    //const flatArray =[[[105,210],[220,350]],[[110,230],[240,350]]];
-    //різниця між елементами масиву
-    // const result = flatArray.flatMap((el => {
-    //     return el.map((it) =>{
-    //         return it[0] - it[1];
-    //     })
-    // }))
-    // console.log (result);
+//НОВИЙ РОЗГОРНУТИЙ МАСИВ ДЛЯ КОЖНОГО ЕЛЕМЕНТА.....................
+//const flatArray =[[[105,210],[220,350]],[[110,230],[240,350]]];
+//різниця між елементами масиву
+// const result = flatArray.flatMap((el => {
+//     return el.map((it) =>{
+//         return it[0] - it[1];
+//     })
+// }))
+// console.log (result);
 
-    //ПЕРЕБРАТИ МАСИВ...............................................
-    // const flatArray =[[[105,210],[220,350]],[[110,230],[240,350]]];
-    //різниця між елементами масиву
-    // const result = flatArray.flatMap((el => {
-    //     return el.map((it) =>{
-    //         return it[0] - it[1];
-    //     });
-    // }));
-    // console.log (result);
-    // result.forEach((elem, index, array) => {
-    //     console.log(elem);
-    // });
+//ПЕРЕБРАТИ МАСИВ...............................................
+// const flatArray =[[[105,210],[220,350]],[[110,230],[240,350]]];
+//різниця між елементами масиву
+// const result = flatArray.flatMap((el => {
+//     return el.map((it) =>{
+//         return it[0] - it[1];
+//     });
+// }));
+// console.log (result);
+// result.forEach((elem, index, array) => {
+//     console.log(elem);
+// });
+
+//ВБУДОВАНІ МОЖЛИВОСТІ ДЛЯ ОБ'ЄКТІВ.......................................................
+//////////////////////////////////////////////////////////////////////////////////////////
+
+//КОПІЮВАННЯ ВЛАСТИВОСТЕЙ ОБ'ЄКТІВ//////////////////////////////////////////
+
+// const article ={
+//   id:453254,
+//   title:"My article",
+//   description: "This is info ...",
+//   categoryId: 1423,
+//   likeAmount:434,
+// }
+// const aticlePhoto ={
+//   photoUrl:"...url",
+//   photoId: 5436,
+//   photoType:"big",
+// }
+// const articleCommentList ={
+//   list:[{id:6547, user:"Ivan", message:"Крутий контент"}]
+// }
+// Object.assign(article,aticlePhoto,articleCommentList);
+// console.log(article);
+
+//МАСИВ ВЛАСТИВОСТЕЙ//////////////////////////////////
+// const article ={
+//   id:453254,
+//   title:"My article",
+//   description: "This is info ...",
+//   categoryId: 1423,
+//   likeAmount:434,
+// }
+// const aticlePhoto ={
+//   photoUrl:"...url",
+//   photoId: 5436,
+//   photoType:"big",
+// }
+// const articleCommentList ={
+//   list:[{id:6547, user:"Ivan", message:"Крутий контент"}]
+// }
+// Object.assign(article,aticlePhoto,articleCommentList);
+// console.log(Object.entries(article));
+
+//АБО///
+// const article = {
+//   info: { title: "My article", description: "This is info ..." },
+//   id: 453254,
+//   title: "My article",
+//   description: "This is info ...",
+//   categoryId: 1423,
+//   likeAmount: 434,
+// };
+// const articleField = {
+//   title: "ID статті",
+//   description: "Заголовок статті",
+// };
+//console.log(Object.entries(article.info));
+//const formList = Object.entries(article.info);
+//const formListLayout = formList.map(([key, value]) => {
+//повертаємо рядок
+// return `${articleField[key]} : ${value}`;
+//повертаємо масив
+// return [articleField[key],value];
+//повертаємо верстку
+//return `<p><strong>${articleField[key]} </strong> <br> <span> ${value} </span> </p>`;
+
+//});
+//console.log(formListLayout);
+
+//ОБ'ЄКТ З МАСИВУ ВЛАСТИВОСТЕЙ///////////////////////////////////////
+
+// const objArr = [
+//   ["id", 352618],
+//   ["title", "My product"],
+//   ["price", 4350],
+// ];
+// console.log(Object.fromEntries(objArr));
+
+//ПЕРЕВІРКА ЧИ ІСНУЄ ВЛАСТИВІСТЬ ОБ'ЄКТА....//////////////////
+// const article ={
+//   id:453254,
+//   title:"My article",
+//   description: "This is info ...",
+//   categoryId: 1423,
+//   likeAmount:434,
+// }
+// console.log(article.hasOwnProperty("id"));
+
+//ПЕРЕВІРКА ВЛАСТИВОСТЫ НА ПЕРЕРАХОВАНЫСТЬ.....////////////////////
+// const article ={
+//   id:453254,
+//   title:"My article",
+//   description: "This is info ...",
+//   categoryId: 1423,
+//   likeAmount:434,
+// }
+//console.log(article.propertyIsEnumerable("id"));
+
+//ЗАМОРОЗИТИ ОБ'ЄКТ////////////////
+
+//Object.freeze(article);
+
+//ПЕРЕВІРКА НА ЗАМОРОЗКУ ОБ'ЄКТА//////////
+
+//console.log(Object.isFrozen(article));
+
+//ЗАБОРОНА РОЗШИРЕННЯ ОБ'ЄКТУ///////////////////////
+//Object.preventExtensions(article);
+
+
+//ПЕРЕВІРКА НА ЗАБОРОНУ РОЗШИРЕННЯ ОБ'ЄКТУ////
+
+//console.log(Object.isExtensible(article));
+//якщо є заборона - буде false
+
+//ЗАПЕЧАТУВАННЯ ОБ'ЄКТА//////
+// Object.seal(article);
+// delete article.id;
+// console.log(article.id);
+
+//ПЕРЕВІРКА ЧИ ЗАПЕЧАТАНИЙ ОБ'ЄКТ/////
+// console.log(Object.isSealed(article));
+
+//ОТРИМАННЯ КЛЮЧІВ ОБ'ЄКТА///////
+
+//console.log(Object.keys(article));
+
+//ОТРИМАННЯ ЗНАЧЕНЬ ВЛАСТИВОСТЕЙ ОБ'ЄКТА//
+
+//console.log(Object.values(article));
+
+///////МНОЖИНА/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//СТВОРЕННЯ МНОЖИНИ/////////////////
+//  const set = new Set([123,123,123,"123", null])
+// console.log(set);
+
+//const userIdList = new Set([23415, 45873, 78624, 76351]);
+//console.log(userIdList);
+
+//  for of ДЛЯ МНОЖИНИ......
+// for(const value of userIdList){
+//   console.log(value);
+// }
+
+//ФУНКЦІЯ ДЛЯ КОЖНОГ ЕЛЕМЕНТА   forEach  ///////////////
+
+//userIdList.forEach((value,value2,set)=> console.log(value));
+
+/////////РОЗМІР МОЖИНИ   size  //////////////
+//console.log(userIdList.size);
+
+///////  ДОДАВАННЯ ЕЛЕМЕНТУ ДО МНОЖИНИ  add(value)  //////////////
+
+// userIdList.add(76351);
+// console.log(userIdList);
+// console.log(userIdList.size);
+
+// userIdList.add(99990);
+// console.log(userIdList);
+// console.log(userIdList.size);
+
+///////  ВИДАЛЕННЯ ЕЛЕМЕНТУ ДО МНОЖИНИ  delete(value)  //////////////
+
+// userIdList.delete(76351);
+// console.log(userIdList);
+// console.log(userIdList.size);
+
+/////ПЕРЕВІРКА НАЧВНОСТІ ЗНАЧЕННЯ  has   ///////////////
+
+// console.log(userIdList.has(76351));
+// console.log(userIdList.has(99990));
+
+//////ВИДАЛЕННЯ ВСІХ ЕЛЕМЕНТІВ   clear()  ///////////
+
+// userIdList.clear();
+// console.log(userIdList);
+
+/////  КЛЮЧИ ДЛЯ КОЖНОГО ЕЛЕМЕННТУ  keys()  ///////
+
+// const key = userIdList.keys();
+// console.log(key);
+
+///// ЗНАЧЕННЯ КОЖНОГО ЕЛЕМЕНТУ values()  /////
+
+// const value = userIdList.values();
+// console.log(value);
+
+//////////////  ПЕРЕТВОРЕННЯ В ІНШИЙ ТИП ДАННИХ  entries()  ///////
+
+   // Отримання об'єкту
+// const entrie = userIdList.entries();
+// const obj = Object.fromEntries(entrie);
+// console.log(obj);
+
+  //Отримання масиву
+//   const valueList = userIdList.values();
+// const arr = Array.from(valueList);
+// console.log(arr);
+
+
+//Уникнути дублювання
+
+// const arr =[1,2,3,4,3,5,3,2,6];
+// const set = new Set(arr);
+
+
+               //деструктуризація
+
+  //const arr2 = [...set];
+
+       //або
+   // const arr2 = Array.from(set.values());
+
+      //або
+  //     const arr2 = Array.from(set);
+  // console.log(arr2);             
+
+//   додавання категорії
+// const categoryList = new Set();
+// function addCategory(category){
+//   if(categoryList.has(category)){
+//     console.log(`ця категорія вже є`);
+//     return false;
+//   }
+//   categoryList.add(category);
+//   return true;
+
+// }
+
+// console.log(addCategory("спорт"));
+// console.log(addCategory("спорт"));
+// console.log(addCategory("їжа"));
+
+
+
+//взнати список курсів
+// const students = [
+//   {id:1, name:"Ivan",course:"Math"},
+//   {id:2, name:"Vasa",course:"Science"},
+//   {id:3, name:"Petya",course:"Math"},
+//   {id:4, name:"Anton",course:"English"},
+//   {id:5, name:"Olga",course:"Science"},  
+// ];
+// const course = students.map((student) => student.course);
+// console.log(course);
+// const courseList = new Set(course);
+// console.log(courseList);
 
