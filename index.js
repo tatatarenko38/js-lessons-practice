@@ -833,14 +833,14 @@
 // console.log(article.hasOwnProperty("id"));
 
 //ПЕРЕВІРКА ВЛАСТИВОСТЫ НА ПЕРЕРАХОВАНЫСТЬ.....////////////////////
-// const article ={
-//   id:453254,
-//   title:"My article",
+// const article = {
+//   id: 453254,
+//   title: "My article",
 //   description: "This is info ...",
 //   categoryId: 1423,
-//   likeAmount:434,
-// }
-//console.log(article.propertyIsEnumerable("id"));
+//   likeAmount: 434,
+// };
+// console.log(article.propertyIsEnumerable("id"));
 
 //ЗАМОРОЗИТИ ОБ'ЄКТ////////////////
 
@@ -852,7 +852,6 @@
 
 //ЗАБОРОНА РОЗШИРЕННЯ ОБ'ЄКТУ///////////////////////
 //Object.preventExtensions(article);
-
 
 //ПЕРЕВІРКА НА ЗАБОРОНУ РОЗШИРЕННЯ ОБ'ЄКТУ////
 
@@ -935,33 +934,31 @@
 
 //////////////  ПЕРЕТВОРЕННЯ В ІНШИЙ ТИП ДАННИХ  entries()  ///////
 
-   // Отримання об'єкту
+// Отримання об'єкту
 // const entrie = userIdList.entries();
 // const obj = Object.fromEntries(entrie);
 // console.log(obj);
 
-  //Отримання масиву
+//Отримання масиву
 //   const valueList = userIdList.values();
 // const arr = Array.from(valueList);
 // console.log(arr);
-
 
 //Уникнути дублювання
 
 // const arr =[1,2,3,4,3,5,3,2,6];
 // const set = new Set(arr);
 
+//деструктуризація
 
-               //деструктуризація
+//const arr2 = [...set];
 
-  //const arr2 = [...set];
+//або
+// const arr2 = Array.from(set.values());
 
-       //або
-   // const arr2 = Array.from(set.values());
-
-      //або
-  //     const arr2 = Array.from(set);
-  // console.log(arr2);             
+//або
+//     const arr2 = Array.from(set);
+// console.log(arr2);
 
 //   додавання категорії
 // const categoryList = new Set();
@@ -979,18 +976,353 @@
 // console.log(addCategory("спорт"));
 // console.log(addCategory("їжа"));
 
-
-
 //взнати список курсів
 // const students = [
 //   {id:1, name:"Ivan",course:"Math"},
 //   {id:2, name:"Vasa",course:"Science"},
 //   {id:3, name:"Petya",course:"Math"},
 //   {id:4, name:"Anton",course:"English"},
-//   {id:5, name:"Olga",course:"Science"},  
+//   {id:5, name:"Olga",course:"Science"},
 // ];
 // const course = students.map((student) => student.course);
 // console.log(course);
 // const courseList = new Set(course);
 // console.log(courseList);
 
+///////   СЛОВНИК    /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
+//           СТВОРЕННЯ  new Map[[()]]   ////////////////////////////
+
+// const button = new Map([
+//   ["color", "red"],
+//   ["size", "32"],
+// ]);
+//console.log(button);
+
+//з об'єкта
+// const obj = {
+//   color: 'red',
+//   size: '32' + 'px',
+// }
+// const button2 = new Map(Object.entries(obj));
+// console.log(button2);
+
+//з множини
+
+// const set = new Set(['red', '32px']);
+// const button3 = new Map(set.entries());
+// console.log(button3);
+
+//  з словника в множину ключів
+
+// const button = new Map([
+//   ["color", "red"],
+//   ["size", "32"],
+// ]);
+// const set2 = new Set(button.keys());
+// console.log(set2);
+
+//  з словника в множину значень
+// const set2 = new Set(button.values());
+// console.log(set2);
+
+////  for ......of   //////
+
+//    const button = new Map([
+//   ["color", "red"],
+//   ["size", "32"],
+// ]);
+// for(const[key, value] of button){
+//   console.log(key,value);
+// }
+// отримання ключів з словника через перетворення на об1єкт ....
+
+// for(const value in Object.fromEntries(button.entries())){
+//   console.log(value)
+// }
+
+//  forEach  ////
+//button.forEach((value,key, map) => console.log(value,key, map));
+
+//    .size   розмір словника  ....
+// const button = new Map([
+//   ["color", "red"],
+//   ["size", "32"],
+// ]);
+//console.log(button.size);
+
+//  ДОДАВАННЯ ЕЛЕМЕНТА  .set(key,value)   ////
+
+// const button = new Map([
+//   ["color", "red"],
+//   ["size", "32"],
+// ]);
+//button.set('weight', 600);
+//console.log(button);
+
+//ОТРИМАННЯ ЕЛЕМЕНТА  .get(key)  ///
+// const button = new Map([
+//   ["color", "red"],
+//   ["size", "32"],
+// ]);
+//console.log(button.get("size"));
+
+//ВИДАЛЕННЯ ЕЛЕМЕНТУ  .delete(value)  //
+
+// console.log(button.delete("color"));
+// console.log(button);
+
+//ПЕРЕВІРКА НАЯВНОСТІ ЗНАЧЕННЯ  .has(value) //
+
+//console.log(button.has("color"));
+
+//  ВИДАЛЕННЯ ВСІХ ЕЛЕМЕНТІВ .clear()  //
+// button.clear();
+// console.log(button);
+
+//  зміна мови сайту ....
+// const LANG_LIST = {
+//   UA: "uk-UA",
+//   EU: "eu-EU",
+// };
+// const activeLang = LANG_LIST.UA;
+// const product = {
+//   price: 100,
+//   amount: 3,
+
+//   info: new Map([
+//     [LANG_LIST.UA, { title: "Заголовок", info: "Інформація" }],
+//     [LANG_LIST.EU, { title: "Title", info: "info" }],
+//   ]),
+// };
+// const info = product.info.get(activeLang);
+// console.log(info);
+
+//----Список клієнтів та придбаних ними товарів
+// const user1 ={
+//   id: 35678,
+//   name:"Ivan",
+// }
+// const user2 ={
+//   id: 35679,
+//   name:"Anton",
+// }
+// const product1 ={
+//   id: 6785,
+//   title:"Mobail phone",
+// }
+// const product2 ={
+//   id: 9985,
+//   title:"Apple",
+//}
+// const userProduct = new Map();
+// userProduct.set(user1,product1).set(user2,product2);
+// console.log(userProduct);
+// console.log(userProduct.has(user1));
+
+//Список клієнтів певного продукту
+
+// const productClientList = new Map([[product1, new Set()]]);
+// productClientList.set(product1, productClientList.get(product1).add(user1));
+// console.log(productClientList);
+
+// productClientList.set(product1, productClientList.get(product1).add(user2));
+// console.log(productClientList);
+
+// перевірка чи є клієнт
+
+// const has = productClientList.get(product1).has(user1);
+// console.log(has);
+
+//  JSON   //  URL   /////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// const roleField = "roleName";
+// const data = {
+//   id: 1843,
+//   login: "user1324",
+//   password: "12345",
+//   [roleField]: "Admin",
+// };
+// const jsonData = JSON.stringify(
+//   data,
+//   (key, value) => {
+//     if (key === roleField) {
+//       return null;
+//     }
+//     if (typeof value === "string") {
+//       return value.toUpperCase();
+//     }
+//     if (typeof value === "number") {
+//       return value * 10;
+//     }
+//     return value;
+//   },
+//   5
+// );
+// console.log(jsonData);
+
+// const parseData = JSON.parse(jsonData, (key, value) => {
+//   if (key === roleField) {
+//     return "Admin";
+//   }
+//   if (typeof value === "string") {
+//     return value.toLowerCase();
+//   }
+//   if (typeof value === "number") {
+//     return value / 10;
+//   }
+//   return value;
+// });
+// console.log(parseData);
+
+/////           URL              ///////////////
+
+// const url = new URL('https://www.example.com/path');
+// console.log(url);
+//url.searchParams.delete('search');
+// console.log(url);
+
+//  ДАТА ТА ЧАС /////////     DATE   ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+// Поточний час   але за Грінвічем///////////////////
+// const date = new Date();
+// console.log(date);
+
+//  ISO форматі рядком /////
+// const date = new Date();
+// const dateString = date.toISOString();
+// console.log(dateString);
+
+// рядок використовуємо як аргумент для створення нової дати ////
+//console.log(new Date(dateString));
+
+//отрим дати з рядка в форматі ISO в мілісекундах  //
+//console.log(Date.parse(dateString));
+
+//   або  ///
+// const date2 = Date.parse(dateString);
+// console.log(date2);
+
+//  час через 5 хвилин  ////
+
+// const date2 = Date.parse(dateString) + 1000 * 60 * 5;
+//  console.log(date2);
+
+//  перетворення дати в рядок тексту  ///
+// const date = new Date();
+// const dateString = date.toISOString();
+// console.log(date.toString());
+// console.log(date.toUTCString());
+
+// console.log(date.toISOString());
+
+// console.log(date.toTimeString());
+// console.log(date.toDateString());
+
+//  Отримати зсув час.поясу (в годинах)  ///
+// const date = new Date();
+// const zone = date.getTimezoneOffset() / -60;
+// console.log(zone);
+
+// перетворення на таймзону користувача
+// const user = -3;
+// function getUserTimeZone(timeZone) {
+// let date = Date.now();
+// поточний таймзон
+// const myTimezone = new Date().getTimezoneOffset() / -60;
+// console.log(myTimezone);
+
+//return date.toString();
+//}
+// в мілісекундах
+//console.log(getUserTimeZone(user));
+
+// в норм вигляді
+//console.log(new Date().toString(1710148564673));
+
+//  перевести наш час (наш таймзон) в нульовий таймзон (в мілісек)
+// const user = -3;
+// function getUserTimeZone(timezone) {
+// let date = Date.now();
+// const myTimezone = new Date().getTimezoneOffset() / -60;
+
+//тримаємо нульвий таймзон
+//date -= 1000 * 60 * 60 * myTimezone;
+
+// нульовий таймзон користувача  ///
+//date += 1000 * 60 * 60 * timezone;
+
+//return date;
+//}
+//в мілісекундах
+//console.log(getUserTimeZone(user));
+
+//в норм вигляді
+//console.log(new Date(getUserTimeZone(user)).toString());
+
+// перевірити з поточ часом по Грінвічу ///
+//console.log(new Date().toUTCString());
+
+// наш час та час користувача локальний та за Грінвічем(UTC)
+// const user = -3;
+// function getUserTimeZone(timezone) {
+//   let date = new Date(Date.UTC(2024, 2, 11, 12, 30, 0, 0));
+//   console.log(date.toString());
+// console.log(date.toUTCString());
+
+//   const myTimezone = date.getTimezoneOffset() / -60;
+//   date.setTime(date.getTime() - 1000 * 60 * 60 * myTimezone);
+//   date.setTime(date.getTime() + 1000 * 60 * 60 * timezone);
+//   return date
+// }
+// const userDate = getUserTimeZone(user);
+// console.log(userDate.toString());
+// console.log(userDate.toUTCString());
+
+// отримання(getHours()) та встановлення(setHourse()) годин з об'єкту дати //////
+// const user = -3;
+// function getUserTimeZone(timezone) {
+// let date = new Date(Date.UTC(2024, 2, 11, 12, 30, 0, 0));
+// console.log(date.getHours());
+// console.log(date.getUTCHours());
+
+// date.setHours(date.getUTCHours() + timezone);
+// return date;
+// } 
+// const userDate = getUserTimeZone(user);
+// console.log(userDate.getHours());
+// console.log(userDate.getUTCHours());
+
+// console.log(userDate.toTimeString());
+
+
+//  повертає рік за датою  .getFullYear()   ////
+const date = new Date();
+const dateString = date.toISOString();
+
+// console.log('year', date.getFullYear());
+// date.setFullYear(2022);
+// console.log('year', date);
+
+// за місяцем
+
+// console.log('month', date.getMonth());
+// date.setMonth(0);
+// console.log('month', date.getMonth());
+
+// за днем місяця
+// console.log('date', date.getDate());
+// date.setDate(4);
+// console.log('date', date.getDate());
+// console.log(date);
+
+
+// за днем тижня
+// console.log('day', date.getDay());
+// console.log(date);
+
+// якщо сразу в console.log , то буде в мілісек
+//console.log(date.setMonth(0));
