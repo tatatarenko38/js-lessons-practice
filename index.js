@@ -1188,8 +1188,8 @@
 ////////////////////////////////////////////////////////////////////////////
 
 // Поточний час   але за Грінвічем///////////////////
-// const date = new Date();
-// console.log(date);
+//  const date = new Date();
+//  console.log(date);
 
 //  ISO форматі рядком /////
 // const date = new Date();
@@ -1211,7 +1211,7 @@
 // const date2 = Date.parse(dateString) + 1000 * 60 * 5;
 //  console.log(date2);
 
-//  перетворення дати в рядок тексту  ///
+// перетворення дати в рядок тексту  ///
 // const date = new Date();
 // const dateString = date.toISOString();
 // console.log(date.toString());
@@ -1300,8 +1300,8 @@
 
 
 //  повертає рік за датою  .getFullYear()   ////
-const date = new Date();
-const dateString = date.toISOString();
+// const date = new Date();
+// const dateString = date.toISOString();
 
 // console.log('year', date.getFullYear());
 // date.setFullYear(2022);
@@ -1326,3 +1326,76 @@ const dateString = date.toISOString();
 
 // якщо сразу в console.log , то буде в мілісек
 //console.log(date.setMonth(0));
+
+
+////     МАТЕМАТИКА    Math.   ///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+//console.log(Math.PI);
+
+////  max   i    min   ////////////
+
+// const a = 5;
+// const b = 10;
+// const c = -5;
+// const d = 0;
+
+// const arr = [20,30,40];
+
+// console.log(Math.max(a,b,c,...arr));
+// console.log(Math.min(a,b,c,...arr));
+
+// знак числа в аргументі  //////////
+
+// console.log(Math.sign(a));
+// console.log(Math.sign(c));
+// console.log(Math.sign(d));
+
+//// Піднесення до ступеня   ///////////
+
+// console.log(Math.pow(4,3));
+// console.log(Math.pow(a,3));
+
+//     квадратний корінь   ///////
+
+// console.log(Math.sqrt(36));
+// console.log(Math.sqrt(a));
+
+///   округлення числа   /////
+
+// console.log(Math.floor(1.123), Math.floor(1.5), Math.floor(1.923));
+
+// console.log(Math.ceil(1.123), Math.ceil(1.5), Math.ceil(1.923));
+
+// console.log(Math.round(1.123), Math.round(1.5), Math.round(1.923));
+
+// console.log(Math.trunc(1.123), Math.trunc(1.5), Math.trunc(1.923));
+
+///    випадкове число    /////////////////// Math.random() (0 - 0.99999999999999)
+
+//console.log(Math.random());
+
+// (0 - 9)
+// const random = Math.trunc(Math.random() * 10);
+// console.log(random);
+
+// (0 - 10)
+// const random = Math.trunc(Math.random() * 10) + 1;
+// console.log(random);
+
+// (0 - 100)
+// const random = Math.trunc(Math.random() * 100) + 1;
+// console.log(random);
+
+//  Округлення числа до точних значень   /////
+//// з формату duoble(8 байтів) до float(4 байта)  ///
+
+console.log(0.1 + 0.2 === 0.3);
+console.log(Math.fround(0.1 + 0.2) === Math.fround(0.3));
+
+console.log(Math.fround(0.1 + 0.2));
+console.log(Math.fround(0.3));
+
+console.log(0.1 + 0.2);
+console.log(0.3);
+
