@@ -1291,13 +1291,12 @@
 
 // date.setHours(date.getUTCHours() + timezone);
 // return date;
-// } 
+// }
 // const userDate = getUserTimeZone(user);
 // console.log(userDate.getHours());
 // console.log(userDate.getUTCHours());
 
 // console.log(userDate.toTimeString());
-
 
 //  повертає рік за датою  .getFullYear()   ////
 // const date = new Date();
@@ -1319,14 +1318,12 @@
 // console.log('date', date.getDate());
 // console.log(date);
 
-
 // за днем тижня
 // console.log('day', date.getDay());
 // console.log(date);
 
 // якщо сразу в console.log , то буде в мілісек
 //console.log(date.setMonth(0));
-
 
 ////     МАТЕМАТИКА    Math.   ///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -1390,12 +1387,169 @@
 //  Округлення числа до точних значень   /////
 //// з формату duoble(8 байтів) до float(4 байта)  ///
 
-console.log(0.1 + 0.2 === 0.3);
-console.log(Math.fround(0.1 + 0.2) === Math.fround(0.3));
+// console.log(0.1 + 0.2 === 0.3);
+// console.log(Math.fround(0.1 + 0.2) === Math.fround(0.3));
 
-console.log(Math.fround(0.1 + 0.2));
-console.log(Math.fround(0.3));
+// console.log(Math.fround(0.1 + 0.2));
+// console.log(Math.fround(0.3));
 
-console.log(0.1 + 0.2);
-console.log(0.3);
+// console.log(0.1 + 0.2);
+// console.log(0.3);
+
+////   КОНСОЛЬ   ///////////////////////////////////////
+/////////////////////////////////////////////////////
+
+// {let a = 5;
+//  a = 10;}
+
+//  console.error("Error, змінна а має бути 5");
+
+//   ГРУПУВАННЯ  ////////////
+
+// console.group("group1");
+// console.log("test1");
+// console.warn("test2");
+// console.info("test3");
+
+// console.group("group2");
+// console.log("test4");
+// console.debug("test5");
+// console.groupEnd();
+
+// console.groupEnd();
+
+///  Вимірювання часу  ///////////////////////////////
+
+// const countLabel = "Timer";
+// console.time(countLabel);
+
+// console.group("group1");
+// console.log("test1");
+// console.warn("test2");
+// console.info("test3");
+
+// console.timeLog(countLabel);
+
+// console.group("group2");
+// console.log("test4");
+// console.debug("test5");
+// console.groupEnd();
+// console.groupEnd();
+
+// console.timeEnd(countLabel);
+
+///    Вимірювання кількості виконання  /////////
+
+// const countLabel = "Counter";
+// console.count(countLabel);
+
+// console.group("group1");
+// console.log("test1");
+
+// console.count(countLabel);
+
+// console.warn("test2");
+// console.info("test3");
+// console.group("group2");
+
+// console.count(countLabel);
+// console.countReset(countLabel);
+
+// console.log("test4");
+// console.debug("test5");
+// console.groupEnd();
+// console.groupEnd();
+
+// console.count(countLabel);
+
+// Відстеження викликів  ////
+
+// const test1 = () => console.trace("Hello");
+// const test2 = () => test1();
+// const test3 = () => test2();
+// test3();
+
+//         Таблиця консолі   //////////////
+
+// const data = [
+//   { name: "Alic", age: 30, citi: "New York" },
+//   { name: "Ivan", age: 34, citi: "London" },
+// ];
+// console.table(data);
+// console.table(data, ["name","age"]);
+
+//    Перевірка умови (якщо умова не виконується)     //////////
+
+// const a = 5;
+// const b = 10;
+
+// const result = a > b;
+// console.assert(result, "info");
+
+//console.log("%cHello World", "color: yellow; background-color: blue; font-size: 50px");
+
+//////             РЕГУЛЯРНІ ВИРАЗИ    .....//////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+// const regexp = /test/gmsi;
+// console.log(regexp);
+
+// console.log(regexp.flags);
+
+// console.log(regexp.global);
+
+// console.log(regexp.multiline);
+
+// console.log(regexp.dotAll);
+
+// console.log(regexp.ignoreCase);
+
+///     виконання регулярного виразу   .exec ////
+
+// const regexp = /test/gmsi;
+// const result = regexp.exec('This is test');
+// console.log(result[0]);
+
+//   створення груп    ///////
+
+//const regexp = /(?<group1>.e)(?<group2>st)/gims;
+
+//const result = regexp.exec('This is test and est');
+// console.log(result);
+//  console.log(result.groups);
+
+// console.log(regexp.exec("This is test and est"));
+// console.log(regexp.exec("This is test and est"));
+// console.log(regexp.exec("This is test and est"));
+
+//  перевірка наявності збігу   .test  /////
+//console.log(regexp.test("This is test and est"));
+
+// повертає вихідний текст або шаблон рег виразу  .source///
+//console.log(regexp.source);
+
+//останній індекс    ///
+// regexp.lastIndex = 9;
+// console.log(regexp.exec("This is test and est"));
+
+//  заміна рядків    ///////////
+// const regexp = /(?<group1>.e)(?<group2>st)/gims;
+// const test = "This is test and est";
+// console.log(test.replaceAll(regexp,"###"));
+
+//  пошук підрядка в рядку   ////////////////
+//  const regexp = /(?<group1>.e)(?<group2>st)/gims;
+//  const test = "This is test and est";
+// console.log(test.search(regexp));
+
+//  пошук збігів у рядку  //////////
+// const regexp = /(?<group1>.e)(?<group2>st)/gims;
+// const test = "This is test and est";
+//console.log(test.match(regexp));
+
+//  const result = test.matchAll(regexp);
+//  console.log(result.next());
+// console.log(result.next());
+// console.log(result.next());
+
 
