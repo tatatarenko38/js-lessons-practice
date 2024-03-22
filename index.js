@@ -1552,4 +1552,311 @@
 // console.log(result.next());
 // console.log(result.next());
 
+//  ОБРОБКА ПОМИЛОК     //////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 
+// try {
+//   const a = 10;
+
+//   a = 5;
+//   console.log('не виконується')
+// } catch (err) {
+//   console.log(err);
+// } finally {
+//   console.log("2");
+// }
+
+//   створення помилки  \\\\\
+
+// function getUserData(userId) {
+//   try {
+//     const a = 10;
+//     a = 5;
+//     // .... робить запит до бази данних
+//   } catch (err) {
+//     // err - помилка про те, що данні з сервера не можуть бути отримані
+//     const newError = new Error(
+//       `Помилка.Неможливо отримати дані користувача ${userId}`,
+//       {
+//         cause: err,
+//       }
+//     );
+//     console.log(newError);
+//   }
+// }
+// //getUserData(12345);
+
+// function updateUserData(userId) {
+//   try {
+//     const data = getUserData(userId);
+//     data.name = "Ivan";
+//     //  ......
+//   } catch (err) {
+//     // err - помилка про те, що данні з сервера не можуть бути отримані
+//     const newError = new Error(
+//       `Помилка.Неможливо оновити дані користувача ${userId}`,
+//       {
+//         cause: err,
+//       }
+//     );
+//     console.log(newError);
+//   }
+// }
+// updateUserData(3344);
+
+// оператор 'кинути' throw  ///////
+// function getUserData(userId) {
+//     try {
+//       const a = 10;
+//       a = 5;
+//       // .... робить запит до бази данних
+//     } catch (err) {
+//       // err - помилка про те, що данні з сервера не можуть бути отримані
+//       throw newError = new Error(
+//         `Помилка.Неможливо отримати дані користувача ${userId}`,
+//         {
+//           cause: err,
+//         }
+//       );
+//       console.log(newError);
+//     }
+//   }
+//getUserData(12345);
+
+//   function updateUserData(userId) {
+//     try {
+//       const data = getUserData(userId);
+//       data.name = "Ivan";
+//       //  ......
+//     } catch (err) {
+//       // err - помилка про те, що данні з сервера не можуть бути отримані
+//       const newError = new Error(
+//         `Помилка.Неможливо оновити дані користувача ${userId}`,
+//         {
+//           cause: err,
+//         }
+//       );
+//       console.log(newError);
+
+//       // просто отримати повідомлення про помилку
+//       //console.log(newError.message);
+
+// причина помилки
+//console.log(newError.cause);
+
+//стек викликів
+//console.log(newError.stack);
+
+// помилка у форматі рядка
+//console.log(newError.toString);
+
+//     }
+//   }
+//updateUserData(3344);
+
+//   function sumNum(a, b){
+//     if(typeof a !== 'number' || typeof b !== 'number' ){
+//        throw new Error(`Аргументи не є числами`);
+//     }
+//     return a+b;
+//   }
+//  try{
+//     sumNum(5, 'abc');
+//  }catch(err){
+//     console.log(err.message);
+//  }
+
+//  .name помилки  /////
+
+// const ERROR_ID_LIST = {
+//   NOT_NUMBER: 1,
+// };
+// function sumNum(a, b) {
+//   if (typeof a !== "number" || typeof b !== "number") {
+//     const error = new TypeError(`Аргументи не є числами`);
+//     error.name = ERROR_ID_LIST.NOT_NUMBER;
+//     throw error;
+//   }
+//   return a + b;
+// }
+// try {
+//   sumNum(5, "abc");
+// } catch (err) {
+//   if (err.name === ERROR_ID_LIST.NOT_NUMBER) {
+//     sumNum(5, 0);
+//   }
+//   console.log(err.name);
+// }
+
+///   ОБ'ЄКТНО-ОРІЄНТОВАНЕ ПРОГРАМУВАННЯ    /////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+///   Створення об'єкта з прототипом  Object.create(proto, propertiesObject)
+
+// let Animal = {
+//   name: "Тварина",
+//   voice: "Звук",
+//   say() {
+//     console.log(`${this.name} каже ${this.voice}`);
+//   },
+// };
+// const dog = Object.create(Animal);
+// dog.name = "Бобік";
+// dog.voice = "Гав";
+// dog.say();
+// console.log(dog);
+
+// Animal.go = function(){
+//     console.log(`${this.name} біжить`);
+// }
+// dog.go();
+
+ //Отримати об'єкт прототипу Object.getPrototypeOf(obj) //
+
+ //технічна
+// console.log(dog.__proto__)
+
+// console.log(Object.getPrototypeOf(dog));
+// console.log(Object.getPrototypeOf(dog) === Animal);
+
+// перевірка чи є об'єкт прототипом  .isPrototypeOf(obj)  //
+
+// console.log(Animal.isPrototypeOf(dog));
+
+//  змінити прототип   Object.setPrototypeOf(obj, prototype)//
+
+// Object.setPrototypeOf(dog, {asd: 5});
+// console.log(Object.getPrototypeOf(dog));
+
+//Визначення налаштування властивості ////
+
+// Object.defineProperty(obj, "prop", descriptor)
+//Object.defineProperties(obj, {props})
+
+// let Animal = {
+//   name: "Тварина",
+//   voice: "Звук",
+//   say() {
+//     console.log(`${this.name} каже ${this.voice}`);
+//   },
+// };
+// const dog = Object.create(Animal);
+// dog.name = "Бобік";
+// dog.voice = "Гав";
+
+//   Object.defineProperty(dog, "age",{
+//     set(value){
+//         this._age = value * 2;
+//     },
+//     get(){
+//         return `${this._age || 0} років`;
+//     },
+//   } )
+//   console.log(dog.age);
+
+//   dog.age = 15;
+//   console.log(dog.age);
+
+//   delete dog.age;
+//    console.log(dog.age);
+
+/// Налаштування для  value   ///////////////////////
+
+// Object.defineProperty(dog, "location",{
+//    value: 'Ukrain',
+//    writable:true,
+//    configurable: true,
+//    enumerable:true,
+//   } )
+//   console.log(dog.location);
+//   console.log(dog);
+
+///  Виводить масив  ключів
+//console.log(Object.keys(dog));
+
+
+//Інкапсуляція      _властивість
+
+// Object.defineProperty(dog, "_space", {
+//   value: 0,
+//   writable: true,
+//   enumerable: true,
+// });
+
+// Object.defineProperty(dog, "space", {
+//   set(value) {
+//     this._space = value * 4;
+//   },
+//   get() {
+//     return `${this._space}px`;
+//   },
+// });
+// console.log(dog.space);
+// dog.space = 4;
+//console.log(Object.keys(dog));
+
+//   отримання налаштування властивості   
+//Object.getOwnPropertyDescriptor(obj,prop )
+//Object.getOwnPropertyDescriptors(obj ) 
+
+// console.log(Object.getOwnPropertyDescriptor(dog, "_space"));
+// console.log(Object.getOwnPropertyDescriptor(dog, "space"));
+
+//   чи властивість належить об'єкту, а не була успадкована
+// Obj.hasOwnProperty("prop")
+
+// console.log(dog.hasOwnProperty("voice"));
+// console.log(dog.hasOwnProperty("say"));
+
+///  Поліморфізм  ////////////////
+
+// const Tag = {
+//     render(value){
+//         return `<>${value}<>`;
+//     }
+// }
+// const Button = Object.create(Tag);
+
+// Button.render = function(value = ""){
+//     return `<button style ="${this.style}">${value}<button>`;
+// }
+
+// const mainButton = Object.create(Button, {
+//     style: {
+//         value: "background: red;",
+//         writable:true,
+//     }
+// })
+
+// console.log(mainButton.render("Click"));
+
+
+// const Input = Object.create(Tag);
+
+// Input.render = function(){
+//     return `<Input placeholder="${this.placeholder}" style ="${this.style}"`;
+// }
+
+// const loginInput = Object.create(Input, {
+//     style: {
+//         value: "border:1px solid red;",
+//         writable:true,
+//     },
+//     placeholder:{
+//         value: "Login..."
+//     },
+// })
+
+// console.log(loginInput.render());
+
+// const serverRequest = {
+//     data: null,
+//     getData(){
+//         ////.....
+//     },
+//     render(){
+//         this.data = this.getData();
+// // iнше ніж в Tag
+//         return `...`
+//     }
+// }
