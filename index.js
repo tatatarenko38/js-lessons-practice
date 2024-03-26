@@ -2060,5 +2060,139 @@
 
 
 
-////////////////////   ФУНКЦІЇ    //////////////////////////
+////////////////////   ФУНКЦІЇ   (недоученное) //////////////////////////
 //////////////////////////////////////////////////////////////
+
+// function playTrackById(trackId){
+//     //отримати файл пісні та її запустити
+// }
+
+// function stopTrackById(trackId){
+//     //отримати файл пісні та її запустити
+//     console.log(`Отримати файл пісні з ID ${trackId} і поставити її на паузу`);
+// }
+
+// function play(trackName,trackId){
+//     console.log(`Запускаємо ${trackName}`);
+
+//     playTrackById(trackId);
+// }
+
+// function end(oldTrackName,newTrackName){
+//     console.log(`Завершили грати ${oldTrackName}`);
+//     console.log(`Наступний трек ${newTrackName}`);
+// }
+
+// function pausePlay(currentTrackName){
+//     console.log(`Трек ${currentTrackName} на паузі`);
+    
+//     //function reloadDataTrack();
+
+//     play();
+// }
+
+// ///////   Рекурсія   /////////////////////
+
+// // function reloadDataTrack(amount){
+// //     if(amount <= 0){
+// //         console.log("Данні оновлені вказану кількість разів");
+// //     } else{
+// //         console.log("Повторне оновлення");
+// //         //певний код для оновлення
+// //         reloadDataTrack(amount - 1);
+// //     }
+// // }  
+// // reloadDataTrack(5);
+
+// ///  Замикання  ////////////
+
+// // function pauseStopByTrack(trackName, trackId){
+// //     let originTrackName = trackName;
+// //  let originTrackId = trackId
+
+// //     return function pauseStop(){
+//   //  stopTrackById(originTrackId);
+// //         console.log(`Трек ${originTrackName} на паузі`);  
+// //     }    
+// // }
+// // const stopPause1 = pauseStopByTrack("IT - Hello!");
+// // stopPause1();
+
+// // const stopPause2 = pauseStopByTrack("IT - JS!");
+// // stopPause2();
+
+// ///   Стрілкова функція    //////
+
+// // const runCommand = function(command, errorFn){
+// //     const result = command();
+// //     if(!result){
+// //         return errorFn();
+// //     }
+// // }
+// // runCommand(
+// //     () => {
+// //         console.log("Запуск команди");
+// //         return 1-1;
+// //     },
+// //     () => console.log("Помилка")
+// // );
+
+// ///   Каррірована функція  ////////
+
+// // function pauseStopByTrack(trackName, trackId){
+           
+// //         return () => {
+// //             stopTrackById(trackId);
+// //             console.log(`Трек ${trackName} на паузі`);  
+// //         }    
+// //     }
+// //     const stopPause1 = pauseStopByTrack("IT - Hello!", 10);
+// //     stopPause1();
+    
+// //     const stopPause2 = pauseStopByTrack("IT - JS!",11);
+// //     stopPause2();
+    
+
+// //   Мемoізація   /////   stopPause1(); - не визивається три раза
+// // а лише один раз - економія ресурсів ноута
+
+// // function pauseStopByTrack(trackName, trackId){   
+// //     let isPause = null;        
+// //     return () => {
+// //         if(isPause === true){
+// //             return;
+// //         }
+
+// //         stopTrackById(trackId);
+// //         console.log(`Трек ${trackName} на паузі`);
+// //         isPause = true;  
+// //     }    
+// // }
+// // const stopPause1 = pauseStopByTrack("IT - Hello!", 10);
+// // stopPause1();
+// // stopPause1();
+// // stopPause1();
+
+// //  Мемоізація - якщо повторно викликається одне і те ж 
+// // значення amount  то знову не обчислюється а повертається старий 
+// // результат обчислення
+
+// // const memoCalcSpase = (oldAmount = null, oldUnit = null, oldRresult = null) =>{
+// //     return (amount, unit = "px") => {
+// //         if(oldAmount === amount && unit === oldUnit){
+// //             console.log("Memo");
+// //             return oldRresult;
+// //         }
+
+// //         oldRresult = `${amount * 4}${unit}`;
+// //         oldAmount = amount;
+// //         oldUnit = unit;
+
+// //         return oldRresult;
+// //     }
+// // }
+// // const calcSpace = memoCalcSpase();
+
+// // console.log(calcSpace(5));
+// // console.log(calcSpace(5));
+
