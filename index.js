@@ -1711,9 +1711,9 @@
 // }
 // dog.go();
 
- //Отримати об'єкт прототипу Object.getPrototypeOf(obj) //
+//Отримати об'єкт прототипу Object.getPrototypeOf(obj) //
 
- //технічна
+//технічна
 // console.log(dog.__proto__)
 
 // console.log(Object.getPrototypeOf(dog));
@@ -1774,7 +1774,6 @@
 ///  Виводить масив  ключів
 //console.log(Object.keys(dog));
 
-
 //Інкапсуляція      _властивість
 
 // Object.defineProperty(dog, "_space", {
@@ -1795,9 +1794,9 @@
 // dog.space = 4;
 //console.log(Object.keys(dog));
 
-//   отримання налаштування властивості   
+//   отримання налаштування властивості
 //Object.getOwnPropertyDescriptor(obj,prop )
-//Object.getOwnPropertyDescriptors(obj ) 
+//Object.getOwnPropertyDescriptors(obj )
 
 // console.log(Object.getOwnPropertyDescriptor(dog, "_space"));
 // console.log(Object.getOwnPropertyDescriptor(dog, "space"));
@@ -1830,7 +1829,6 @@
 
 // console.log(mainButton.render("Click"));
 
-
 // const Input = Object.create(Tag);
 
 // Input.render = function(){
@@ -1860,3 +1858,207 @@
 //         return `...`
 //     }
 // }
+
+/////    Функція КОНСТРУКТОР    ///////////////////////////
+///////////////////////////////////////////////////////////
+
+// function User({login = null, password = null, isAdmin = null, age = 0}){
+//     this.login = login;
+//     this.password = password;
+//     this.role = isAdmin ? "Admin" : "User";
+//     this.age = age;
+
+//     this.verify = function(password){
+//         return this.password === password;
+//     }
+// }
+
+// const registerData = {
+//   login: "Ivan",
+//   password: "123dgfhy",
+// };
+// const user = new User(registerData);
+// console.log(user.verify("tyref"));
+
+// const adminData = {
+//   login: "Ivan",
+//   password: "123dgfhy",
+//   isAdmin: true,
+// };
+// const admin = new User(adminData);
+// console.log(admin.password);
+
+// const testData = {
+//   login: "Ivan",
+//   password: "123dgfhy",
+// };
+// const testUser = new User(testData);
+// console.log(testUser.login);
+
+///   Перевірка на наявність new      new.target   ////
+// function User(data) {
+//   console.log("new", new.target);
+
+//   if (new.target) {
+//     const { login = null, password = null, isAdmin = null, age = 0 } = data;
+
+//     this.login = login;
+//     this.password = password;
+//     this.role = isAdmin ? "Admin" : "User";
+//     this.age = age;
+
+//     this.verify = function (password) {
+//       return this.password === password;
+//     };
+//   } else {
+//    return new User(data);
+//   }
+// }
+// const registerData = {
+//   login: "Ivan",
+//   password: "123dgfhy",
+// };
+// const user = new User(registerData);
+// console.log(user.verify("tyref"));
+
+// const adminData = {
+//   login: "Ivan",
+//   password: "123dgfhy",
+//   isAdmin: true,
+// };
+// const admin = new User(adminData);
+// console.log(admin.password);
+
+// const testData = {
+//   login: "Ivan",
+//   password: "123dgfhy",
+// };
+// const testUser =new User(testData);
+// console.log(testUser.login);
+
+/// Спрощений запис без this у функції-конструкторі і без new  y const ////
+
+// function User(data) {
+//   if (new.target) {
+//     const { login = null, password = null, isAdmin = null, age = 0 } = data;
+//     const role = isAdmin ? "Admin" : "User";
+
+//     const object = Object.assign(this, {
+//       login,
+//       password,
+//       role,
+//       age,
+//     });
+
+//     if (role === "Admin") {
+//       object.verify = function (password) {
+//         console.log(password, this)
+//         return this.password === password;
+//       };
+//     }
+//     if (age >= 50) {
+//       object.login = String(object.login).toUpperCase();
+//     }
+
+//     ///   Перезапис вбудованих функцій  .valueOf()  .toString()
+//     object.toString = function () {
+//       return `Користувач ${this.login}`;
+//     };
+//   } else {
+//     return new User(data);
+//   }
+// }
+
+// const registerData = {
+//   login: "ivan",
+//   password: "123dgfhy",
+//   isAdmin: true,
+//   age: 50,
+// };
+// const user = User(registerData);
+
+// console.log(user.toString());
+// console.log(user.verify("tyref"));
+
+// const adminData = {
+//   login: "Ivan",
+//   password: "123dgfhy",
+//   isAdmin: true,
+// };
+// const admin = User(adminData);
+// console.log(admin.password);
+
+// const testData = {
+//   login: "ivan",
+//   password: "123dgfhy",
+//   age: 50,
+// };
+// const testUser = User(testData);
+// console.log(testUser.login);
+
+// console.log(Object.getPrototypeOf(testUser) === User.prototype);
+
+//  Додати нову властивість до
+// const object = Object.assign(this, {
+//       login,
+//       password,
+//       role,
+//       age,
+//     });
+
+// User.prototype.test = "hello";
+// console.log(user.test);
+
+
+//  Кількість параметрів функції  .length
+//console.log(User.length);
+
+// Назва функції   .name  
+
+// const test = User;
+// console.log(test.name);
+
+// console.log("================");
+//console.log(user.verify("123dgfhy"));
+
+/// Застосування функції  .apply(thisArg, argsArray)
+
+// const verifyUser = user.verify;
+// console.log(verifyUser.apply(user,["123dgfhy"]));
+
+//   Прив'язка функції   bind(thisArg, arg1, ... argN)
+
+// const verifyUser = user.verify.bind(user, "123dgfhy");
+// console.log(verifyUser());
+
+/// Виклик функції   call(thisAfg, arg1, ... , argN)
+
+// function Animal(name){
+//     this.name = name;
+// }
+// function Person(name, age){
+//     Animal.call(this, name);
+//     this.age = age;
+// }
+
+//////  або
+
+// function Person(name, age){
+//     Animal.apply(this, [name]);
+//     this.age = age;
+// }
+
+////// або 
+
+// const  Person = function(name, age){
+//     Animal.call(this, name);
+//     this.age = age;
+// }
+
+// const user2 = new Person("Anton", 32);
+// console.log(user2.name);
+
+
+
+////////////////////   ФУНКЦІЇ    //////////////////////////
+//////////////////////////////////////////////////////////////
