@@ -2009,11 +2009,10 @@
 // User.prototype.test = "hello";
 // console.log(user.test);
 
-
 //  Кількість параметрів функції  .length
 //console.log(User.length);
 
-// Назва функції   .name  
+// Назва функції   .name
 
 // const test = User;
 // console.log(test.name);
@@ -2048,7 +2047,7 @@
 //     this.age = age;
 // }
 
-////// або 
+////// або
 
 // const  Person = function(name, age){
 //     Animal.call(this, name);
@@ -2057,8 +2056,6 @@
 
 // const user2 = new Person("Anton", 32);
 // console.log(user2.name);
-
-
 
 ////////////////////   ФУНКЦІЇ   (недоученное) //////////////////////////
 //////////////////////////////////////////////////////////////
@@ -2085,7 +2082,7 @@
 
 // function pausePlay(currentTrackName){
 //     console.log(`Трек ${currentTrackName} на паузі`);
-    
+
 //     //function reloadDataTrack();
 
 //     play();
@@ -2101,7 +2098,7 @@
 // //         //певний код для оновлення
 // //         reloadDataTrack(amount - 1);
 // //     }
-// // }  
+// // }
 // // reloadDataTrack(5);
 
 // ///  Замикання  ////////////
@@ -2112,8 +2109,8 @@
 
 // //     return function pauseStop(){
 //   //  stopTrackById(originTrackId);
-// //         console.log(`Трек ${originTrackName} на паузі`);  
-// //     }    
+// //         console.log(`Трек ${originTrackName} на паузі`);
+// //     }
 // // }
 // // const stopPause1 = pauseStopByTrack("IT - Hello!");
 // // stopPause1();
@@ -2140,24 +2137,23 @@
 // ///   Каррірована функція  ////////
 
 // // function pauseStopByTrack(trackName, trackId){
-           
+
 // //         return () => {
 // //             stopTrackById(trackId);
-// //             console.log(`Трек ${trackName} на паузі`);  
-// //         }    
+// //             console.log(`Трек ${trackName} на паузі`);
+// //         }
 // //     }
 // //     const stopPause1 = pauseStopByTrack("IT - Hello!", 10);
 // //     stopPause1();
-    
+
 // //     const stopPause2 = pauseStopByTrack("IT - JS!",11);
 // //     stopPause2();
-    
 
 // //   Мемoізація   /////   stopPause1(); - не визивається три раза
 // // а лише один раз - економія ресурсів ноута
 
-// // function pauseStopByTrack(trackName, trackId){   
-// //     let isPause = null;        
+// // function pauseStopByTrack(trackName, trackId){
+// //     let isPause = null;
 // //     return () => {
 // //         if(isPause === true){
 // //             return;
@@ -2165,16 +2161,16 @@
 
 // //         stopTrackById(trackId);
 // //         console.log(`Трек ${trackName} на паузі`);
-// //         isPause = true;  
-// //     }    
+// //         isPause = true;
+// //     }
 // // }
 // // const stopPause1 = pauseStopByTrack("IT - Hello!", 10);
 // // stopPause1();
 // // stopPause1();
 // // stopPause1();
 
-// //  Мемоізація - якщо повторно викликається одне і те ж 
-// // значення amount  то знову не обчислюється а повертається старий 
+// //  Мемоізація - якщо повторно викликається одне і те ж
+// // значення amount  то знову не обчислюється а повертається старий
 // // результат обчислення
 
 // // const memoCalcSpase = (oldAmount = null, oldUnit = null, oldRresult = null) =>{
@@ -2196,3 +2192,86 @@
 // // console.log(calcSpace(5));
 // // console.log(calcSpace(5));
 
+////////////                CLASS     //////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// class User {
+//   login = null;
+//   password = null;
+
+//   #role = null;
+
+//   static age = null;
+
+//   id = null;
+
+//   #id = 1000; //приватне поле(технічне) - не вивод. в консоль
+
+//   isAdmin = () => {
+//     console.log(this.#id);
+//     return this.role === "Admin";
+//   };
+
+//   createAdminUser = (login) => {
+//     const password = this.generateRandomPassword();
+//     return new User();
+//   };
+
+//   static generateRandomPassword = () => {
+//     return true;
+//   };
+
+//   get admin() {
+//     return this.#role === "Admin";
+//   }
+
+//   set admin(value) {
+//     this.#role = "Admin";
+//   }
+// }
+
+// const user = new User();
+// console.log(user); //все окрім  age i Random
+// // console.log(user.isAdmin());
+// console.log(User); // тільки age i Random
+// console.log(user.admin); // до #role доступу не буде
+
+// function verifyAdmin(fn) {
+//   const result = fn();
+
+//   if (!result) {
+//     throw new Error("Не адмін");
+//   }
+
+//   return true;
+// }
+//verifyAdmin(user.isAdmin);
+
+//  constructor  ////////
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  test = () => {
+    console.log("hello", this.name);
+  };
+}
+//  наслідування  extends
+class User2 extends Person {
+  constructor(login, password) {
+    super(login);
+
+    this.login = login;
+    this.password = password;
+  }
+  login = null;
+  password = null;
+}
+const user2 = new User2("Ivan", "hgdxn432");
+
+console.log(user2.test());
+
+///  чи належить об'єкт до іншого класу
+// console.log(user2 instanceof User2);
+// console.log(user2)
