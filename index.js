@@ -2248,30 +2248,107 @@
 //verifyAdmin(user.isAdmin);
 
 //  constructor  ////////
-class Person {
-  constructor(name) {
-    this.name = name;
-  }
+// class Person {
+//   constructor(name) {
+//     this.name = name;
+//   }
 
-  test = () => {
-    console.log("hello", this.name);
-  };
-}
-//  наслідування  extends
-class User2 extends Person {
-  constructor(login, password) {
-    super(login);
+//   test = () => {
+//     console.log("hello", this.name);
+//   };
+// }
+// //  наслідування  extends
+// class User2 extends Person {
+//   constructor(login, password) {
+//     super(login);
 
-    this.login = login;
-    this.password = password;
-  }
-  login = null;
-  password = null;
-}
-const user2 = new User2("Ivan", "hgdxn432");
+//     this.login = login;
+//     this.password = password;
+//   }
+//   login = null;
+//   password = null;
+// }
+// const user2 = new User2("Ivan", "hgdxn432");
 
-console.log(user2.test());
+// console.log(user2.test());
 
 ///  чи належить об'єкт до іншого класу
 // console.log(user2 instanceof User2);
 // console.log(user2)
+
+///////   ПАТЕРНИ ПРОГРАМУВАННЯ      ///////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+/////  Останнє замовлення   /////// одиночка
+
+// class RecentPurchases {
+//   static #instans = null;
+
+//   static #purchases = [];
+
+//   static create() {
+//     if(!this.#instans){
+//       this.#instans = new RecentPurchases();
+//     }
+
+//     return this.#instans;
+//   }
+
+//  static add(item) {
+//     this.#purchases.push(item);
+//   }
+
+//  static get(){
+//     return this.#purchases;
+//   }
+
+//   }
+//   RecentPurchases.create();
+
+//   RecentPurchases.add("Телефон");
+//   RecentPurchases.add("Навушники");
+
+//   console.log(RecentPurchases.get());
+//===============
+
+//////        Фабрика    Factory   ///////
+
+class Button {
+  constructor({ text, color }) {
+    this.text = text;
+    this.color = color;
+  }
+
+  render() {
+    return `<button class="color:${this.color};">${this.text}</button>`;
+  }
+}
+
+class IconButton {
+  constructor({ icon, color }) {
+    this.icon = icon;
+    this.color = color;
+  }
+
+  render() {
+    return `<button class="color:${this.color};"><img src="${this.icon}"/></button>`;
+  }
+}
+
+class ButtonFactory {
+  static TYPE = {
+    BASIC: "basic",
+    ICON: "icon",
+  };
+
+  static createButton(type, options) {
+    switch (type) {
+      case this.TYPE.BASIC:
+        return new Button(options);
+      case this.TYPE.ICON:
+        return new IconButton(options);
+      default:
+        throw new Error(`Такого типу кнопки не існує: ${type}`);
+    }
+  }
+}
