@@ -2670,41 +2670,578 @@
 
 // handler3.login("user", "password"); //Вхід заборонено
 
-
 ///  МІСТ  ///
 
 // відпрака може бути через смс, емаіл, телеграм(messeger)
-class User{
-  constructor(name, messager){
-    this.name = name;
-    this.messager = messager;
-  }
+// class User{
+//   constructor(name, messager){
+//     this.name = name;
+//     this.messager = messager;
+//   }
 
-  sendMessege(message) {
-    const formattedMessege = this.formatMessege(message);
-    this.messager.sendMessege(formattedMessege);
-    return formattedMessege;
-  }
+//   sendMessege(message) {
+//     const formattedMessege = this.formatMessege(message);
+//     this.messager.sendMessege(formattedMessege);
+//     return formattedMessege;
+//   }
 
-  formatMessege(message){
-    return `[${this.name}] : ${message}`;
-  }
-}
+//   formatMessege(message){
+//     return `[${this.name}] : ${message}`;
+//   }
+// }
 
-class SMSMesseger{
-  static sendMessege(message){
-    console.log(`Відправлено SMS: ${message}`);
-  }
-}
+// class SMSMesseger{
+//   static sendMessege(message){
+//     console.log(`Відправлено SMS: ${message}`);
+//   }
+// }
 
-class EmailMesseger{
-  static sendMessege(message){
-    console.log(`Відправлено Email: ${message}`);
-  }
-}
+// class EmailMesseger{
+//   static sendMessege(message){
+//     console.log(`Відправлено Email: ${message}`);
+//   }
+// }
 
-const john = new User("John", SMSMesseger);
-const jane = new User("Jane", EmailMesseger);
+// const john = new User("John", SMSMesseger);
+// const jane = new User("Jane", EmailMesseger);
 
-john.sendMessege("Привіт!"); // Відправлено SMS: [John]: Привіт!
-jane.sendMessege("Привіт!"); // Відправлено Email: [Jane]: Привіт!
+// john.sendMessege("Привіт!"); // Відправлено SMS: [John]: Привіт!
+// jane.sendMessege("Привіт!"); // Відправлено Email: [Jane]: Привіт!
+
+//  Композит    (деревоподібна структура)   //////
+// коментар до відео на you-tube
+
+// class Composite{
+//     comments = [];
+
+//     addComment(comment) {
+//         this.comments.push(comment);
+//       }
+
+//       removeComment(comment) {
+//         const index = this.comments.indexOf(comment);
+//         if (index !== -1) {
+//           this.comments.splice(index, 1);
+//         }
+//       }
+
+// }
+// class Comment extends Composite{
+//   constructor(text) {
+//     super();
+//     this.text = text;
+//   }
+
+//   display() {
+//     console.log(`- Коментар: ${this.text}`);
+//     for (const comment of this.comments) {
+//       comment.display();
+//     }
+//   }
+// }
+
+// class Video extends Composite{
+//   constructor(title) {
+//     super();
+//     this.title = title;
+//   }
+
+//     display() {
+//     console.log(`Відео: ${this.title}`);
+//     for (const comment of this.comments) {
+//       comment.display();
+//     }
+//   }
+// }
+
+// const video = new Video("Навчальне відео");
+
+// video.addComment(new Comment("Дуже корисне відео"));
+// video.addComment(new Comment("Дуже корисне відео"));
+
+// video.display();
+// //коментар до першого відео[0]
+// video.comments[0].addComment(new Comment("Відповідь: Згоден"));
+
+// video.display();console.log(video.comments);
+
+//  Муха  ............................
+
+// class Category{
+//     static #categories = {};
+
+//     constructor(name){
+//         this.name = name;
+//     }
+//     static create(name) {
+//         if(!this.#categories[name]) {
+//             this.#categories[name] = new Category(name);
+//         }
+//         return this.#categories[name];
+//     }
+// }
+
+// class Product {
+//     constructor(name, category){
+//         this.name = name;
+//         this.category = category;
+//     }
+
+//     display(){
+//         console.log(`Product: ${this.name}, Category: ${this.category.name}`)
+//     }
+// }
+
+// const electronics = Category.create("Electronics");
+// const books = Category.create("Books");
+// const electronics2 = Category.create("Electronics");
+
+// console.log(electronics, books, electronics2);
+// console.log(electronics === electronics2);
+
+// const product1 = new Product("Laptop", electronics);
+// const product2 = new Product("Headphones",new Category("Electronics2"));// не війде в list
+// const product3 = new Product("Book Title", books);
+// const product4 = new Product("SmartPhone", electronics );
+
+// product1.display();
+// product2.display();
+// product3.display();
+// product4.display();
+
+// console.log(product1.category === product4.category);
+
+// const list = [product1, product2, product3, product4].filter((product) => product.category === Category.create("Electronics"));
+// console.log(list);
+
+// Шаблонний метод    ..............................
+
+// class CoffeeMachine{
+//     prepareCoffee(){
+//         this.boilWater();
+//         this.grindCoffeeBeans();
+//         this.#brewCoffee();
+//         this.pourIntoCup();
+//         this.addIngredients();
+//         this.serveCoffee();
+//     }
+
+//     boilWater(){
+//         console.log("Boiling water...")
+//     }
+
+//     grindCoffeeBeans(){
+//         console.log("Grinding coffee beans..")
+//     }
+
+//     #brewCoffee(){
+//         console.log("Brewing coffee...")
+//     }
+
+//     pourIntoCup(){
+//         console.log("Pouring coffee into cup...")
+//     }
+
+//     addIngredients(){
+//         //цей метод залишається пустим і може бути перевизначений у підкласах
+//     }
+
+//     serveCoffee(){
+//         console.log("Coffee served!")
+//     }
+// }
+
+// class LatteMachine extends CoffeeMachine{
+//     addIngredients(){
+//         console.log("Adding milk to make a latte...")
+//     }
+// }
+
+// class CappuccinoMachine extends CappucconoMachine{
+//     addIngredients(){
+//         console.log("Adding frothed milk and sprinkle of cocoa to make...")
+//     }
+// }
+
+// const latteMachine = new LatteMachine();
+// latteMachine.prepareCoffee();
+
+// const cappuccionoMachine = new CappuccinoMachine();
+// cappuccionoMachine.prepareCoffee();
+
+//  Відвідувач ...................................
+
+// class TextFile {
+//   constructor(name, content) {
+//     this.name = name;
+//     this.content = content;
+//   }
+// }
+
+// class ImageFile {
+//   constructor(name, size) {
+//     this.name = name;
+//     this.size = size;
+//   }
+// }
+
+// class VideoFile {
+//   constructor(name, duration) {
+//     this.name = name;
+//     this.duration = duration;
+//   }
+// }
+
+// class TextEditor {
+//   // це відвідувач
+//   files = [];
+
+//   addFile(file) {
+//     this.files.push(file);
+//   }
+
+//   readTextFile(file) {
+//     console.log(
+//       `Text file: ${file.name}, Size: ${file.content.length} characters`
+//     );
+//   }
+
+//   readImageFile(file) {
+//     console.log(`Image file:${file.name}, Size: ${file.size} KB`);
+//   }
+
+//   readVideoFile(file) {
+//     console.log(`Video file: ${file.name}, Duration: ${file.duration} minutes`);
+//   }
+
+//   readFiles() {
+//     for (const file of this.files) {
+//       if (file instanceof TextFile) {
+//         this.readTextFile(file);
+//       } else if (file instanceof ImageFile) {
+//         this.readImageFile(file);
+//       } else if (file instanceof VideoFile) {
+//         this.readVideoFile(file);
+//       }
+//     }
+//   }
+// }
+
+// const textEditor = new TextEditor();
+
+// const textFile = new TextFile("document.txt", "Loren uytrv njji");
+// const imageFile = new ImageFile("image.jpg", 1024);
+// const videoFile = new VideoFile("video.mp4", 60);
+
+// textEditor.addFile(textFile);
+// textEditor.addFile(imageFile);
+// textEditor.addFile(videoFile);
+
+// console.log(textEditor.files);
+
+// textEditor.readFiles();
+
+//   Адаптер..................................
+
+//система електронних платежів з власним API
+// class ElectronicPaymentSystem {
+//   makePayment(amount) {
+//     const convertedAmount = this.convertAmount(amount);
+//     console.log(`Making electronic payment: $${convertedAmount}`);
+//   }
+
+//   convertAmount(amount) {
+//     //логіка конвертації суми платежу
+//     return amount * 1.2; // припустимо, що необхідна конвертація у відсотках
+//   }
+// }
+
+// class OtherPaymentSystem {
+//   submit(amount) {
+//     console.log(`Submitting payment request: $${amount}`);
+//   }
+// }
+
+// class PaymentAdapter {
+//   constructor(paymentSystem) {
+//     this.paymentSystem = paymentSystem;
+//   }
+
+//   makePayment(amount) {
+//     const convertedAmount = this.convertAmount(amount);
+//     this.paymentSystem.submit(convertedAmount);
+//   }
+
+//   convertAmount(amount) {
+//     return amount * 1.2;
+//   }
+// }
+
+// class Order {
+//   constructor(amount) {
+//     this.amount = amount;
+//     if (amount < 100) {
+//       this.paymentSystem = new PaymentAdapter(new OtherPaymentSystem());
+//     } else {
+//       this.paymentSystem = new ElectronicPaymentSystem();
+//     }
+//   }
+
+//   makePayment() {
+//     return this.paymentSystem.makePayment(this.amount);
+//   }
+// }
+
+// const order1 = new Order(1000);
+// order1.makePayment();
+
+// const order2 = new Order(10);
+// order2.makePayment();
+
+// Стратегія ...............................
+
+// class ShoppingCart {
+//     constructor(discountStrategy){
+//         this.discountStrategy = discountStrategy;
+//         this. items = [];
+//     }
+
+//   addItem(item) {
+//     this.items.push(item);
+//   }
+
+//   calculateTotalPrice() {
+//     //let totalPrice = 0;
+//     // for(const item of this.items){
+//     //     totalPrice += item.price;
+//     // }
+//     // return totalPrice;
+//     // або
+
+//     const price = this.items.reduce((acc, item) => acc + item.price, 0);
+//     return this.discountStrategy.calculateDiscount(price);
+//   }
+// }
+
+// class DiscountStrategy{
+//     calculateDiscount(price){
+//         return price
+//     }
+// }
+
+// // Стратегія знижки для звичайних клієнтів(10%)
+// class RegularDiscountStrategy extends DiscountStrategy{
+//     calculateDiscount(price){
+//         return price * 0.9;
+//     }
+// }
+
+// // Стратегія знижки для преміум клієнтів(20%)
+// class PremiumDiscountStrategy extends DiscountStrategy{
+//     calculateDiscount(price){
+//         return price * 0.8;
+//     }
+// }
+
+// // Стратегія знижки для нових клієнтів(5%)
+// class NewCustomerDiscountStrategy extends DiscountStrategy{
+//     calculateDiscount(price){
+//         return price * 0.95;
+//     }
+// }
+
+// const shoppingCart1 = new ShoppingCart(new RegularDiscountStrategy());
+
+// shoppingCart1.addItem({ name: "product1", price: 100 });
+// shoppingCart1.addItem({ name: "product2", price: 50 });
+
+// console.log(shoppingCart1.calculateTotalPrice());
+
+// Ітератор  ............................
+
+// class User {
+//     constructor(name, email, password){
+//         this.name = name;
+//         this.email = email;
+//         this.password = password;
+//     }
+// }
+
+// class UserGroup{
+//     users = [];
+
+//     addUser(user){
+//         this.users.push(user);
+//     }
+// }
+
+// class UserIterator{
+//     #users = null;
+//     #currentIndex = 0;
+//     constructor(UserGroup){
+//         this.#users = UserGroup.users;
+
+//     }
+
+//     #hasNext(){
+//         return this.#currentIndex < this.#users.length;
+//     }
+
+//     // метод, який повертає наступний елемент
+//     next(){
+//         if(this.#hasNext()){
+//             const name = this.#users[this.#currentIndex].name;
+//             this.#currentIndex++;
+//             return name;
+//         }
+//         return null;
+//     }
+
+//     list(){
+//         return this.#users.map((user) => user.name).join(", ");
+
+//     }
+// }
+
+// const group = new UserGroup();
+
+// group.addUser(new User("John Doe", "john@example.com", "password1"));
+
+// group.addUser(new User("Jane Smith", "jane@example.com", "password2"));
+
+// console.log(group);
+// напряму
+// console.log(group.users.map((user) => user.name).join(", "));
+// //========
+
+// const iterator = new UserIterator(group);
+
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// через ітератор
+// console.log(iterator.list());
+
+// Медіатор
+
+// class User {
+//   constructor(name, chat) {
+//     this.name = name;
+//     this.chat = chat;
+//   }
+
+//   sendMessege(messege) {
+//     console.log(`${this.name} відправив повідомлення ${messege}`);
+//     return this.chat.sendMessege(this, messege);
+//   }
+
+//   //прийняття повідомлення від іншого користувача
+//   receiveMessege(user, messege) {
+//     console.log(
+//       `${this.name} отримав повідомлення від ${user.name}: ${messege}`
+//     );
+//   }
+// }
+// //////// це медіатор
+// class Chat {
+//   constructor() {
+//     this.users = [];
+//   }
+
+//   // додавання користувача до чату
+//   addUser(user){
+//     this.users.push(user);
+//   }
+
+//   //відправлення повідомлення в чат
+//   sendMessege(sender, messege){
+//     for(const user of this.users){
+//         if(user !== sender){
+//             //відправка повідомлення в messege
+//            user.receiveMessege(sender, messege);
+//         }
+//     }
+//   }
+// }
+
+// const chatMediator = new Chat();
+
+// const user1 = new User("John", chatMediator);
+// const user2 = new User("Jane", chatMediator);
+// const user3 = new User("Mike", chatMediator);
+
+// chatMediator.addUser(user1);
+// chatMediator.addUser(user2);
+// chatMediator.addUser(user3);
+
+// user1.sendMessege("Hello!!!!");
+
+
+/////   ЦИКЛ ПОДІЙ   ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+//Встановлення таймера затримки........setTimeout()....................................
+
+// console.log("Перший");
+
+// setTimeout(() => {
+//     console.log("Другий");
+// }, 1000 * 2);
+
+// console.log("Третій");
+
+
+//Задавання запланованої операції   ...........  setImmediate()
+
+// setImmediate(() => {
+//     console.log("Перший");
+// });
+
+// setImmediate(() => {
+//     console.log("Другий");
+// });
+
+// console.log("Третій");
+
+// console.log("Четвертий");
+
+//                  але
+
+// setImmediate(() => {
+//     console.log("Перший");
+// });
+
+// setTimeout(() => {
+//     console.log("Другий");// раніше ніж 1, але після 3,4
+// }, 0);
+
+// console.log("Третій");
+
+// console.log("Четвертий");
+
+
+/////  Задавння інтервалу повторення..........setInterval()...............
+
+// const immediateId = setImmediate(() => {
+//     console.log("Перший");
+// });
+
+// const intervalId = setInterval(() =>{
+//     console.log("П'ятий");
+// }, 1000);
+
+// const timeoutId = setTimeout(() => {
+//     console.log("Другий");
+//     clearInterval(intervalId);
+// }, 5000);
+// console.log("Третій");
+
+// console.log("Четвертий");
+
+// /// 
+// clearImmediate(immediateId);
+// clearTimeout(timeoutId);
+
+
+
+
