@@ -3176,7 +3176,6 @@
 
 // user1.sendMessege("Hello!!!!");
 
-
 /////   ЦИКЛ ПОДІЙ   ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -3189,7 +3188,6 @@
 // }, 1000 * 2);
 
 // console.log("Третій");
-
 
 //Задавання запланованої операції   ...........  setImmediate()
 
@@ -3219,7 +3217,6 @@
 
 // console.log("Четвертий");
 
-
 /////  Задавння інтервалу повторення..........setInterval()...............
 
 // const immediateId = setImmediate(() => {
@@ -3238,10 +3235,688 @@
 
 // console.log("Четвертий");
 
-// /// 
+// ///
 // clearImmediate(immediateId);
 // clearTimeout(timeoutId);
 
+///////  Управління асинхронними операціями  ///////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
+/////     callback(пекельна піраміда, застаріле)
+// function loadFile(filename, callback) {
+//   try {
+//     console.log(`Завантаження файлу ${filename}..`);
+//     setTimeout(() => callback(null, `Вміст файлу ${filename}`), 2000);
+//   } catch (e) {
+//     callback(e);
+//   }
+// }
 
+// loadFile("example.txt", (error, content) => {
+//   if (error) {
+//     console.error("Помилка завантаження файлу:", error);
+//   } else {
+//     console.log("Файл завантажено успішно!");
+//     console.log("Вміст файлу:", content);
+//   }
+// });
 
+// //==================================
+
+// function convertFile(content, callback) {
+//   setTimeout(function () {
+//     //Конвертація файлу...
+//     callback(null, `Конвертований зміст: ${content.toUpperCase()}`);
+//   }, 1000);
+// }
+
+// function saveFile(convertedContent, callback) {
+//   setTimeout(function () {
+//     //Збереження файлу...
+//     callback();
+//   }, 1500);
+// }
+
+// function sendFileToClient(callback) {
+//   setTimeout(function () {
+//     //Відправка данних в інтерфейс..
+//     callback();
+//   }, 500);
+// }
+
+// /////   пекельнa пірамідa
+
+// loadFile("example.txt", (error, content) => {
+//   if (error) {
+//     console.log("Помилка завантаження файлу");
+//   } else {
+//     console.log("Файл завантажено успішно!");
+//     console.log("Вміст файлу:", content);
+//   }
+
+//   convertFile(content, (error, convertedContent) => {
+//     if (error) {
+//       console.log("Помилка конвертації файла:", error);
+//     } else {
+//       console.log("Файл зконвертовано успішно!");
+//       console.log("Конвертований вміст :", convertedContent);
+//     }
+
+//     saveFile(convertedContent, (error) => {
+//       if (error) {
+//         console.log("Помилка збереження файлу");
+//       } else {
+//         console.log("Файл збережено успішно!");
+//       }
+//       sendFileToClient((error) => {
+//         if (error) {
+//           console.log("Помилка відправлення файла клієнту:", error);
+//         } else {
+//           console.log("Файл успішно відправлено клієнту!");
+//         }
+//       });
+//     });
+//   });
+// });
+
+/////   Promise(callback)
+
+//const filename = "Test";
+
+// const loadFile = new Promise((resolve) => {
+//   console.log(`Завантаження файлу ${filename}..`);
+
+//   setTimeout(() => resolve(`Вміст файлу ${filename}`), 2000);
+//  });
+
+//  console.log(loadFile);
+//  setTimeout(() => console.log(loadFile), 3000);
+
+/////    або...........
+
+// const loadFile = (filename) =>
+//   new Promise((resolve) => {
+//     console.log(`Завантаження файлу ${filename}..`);
+
+//     setTimeout(() => resolve(`Вміст файлу ${filename}`), 2000);
+//   });
+
+//const result = loadFile("image.png");
+
+// console.log(result);
+// setTimeout(() => console.log(result), 3000);
+
+//result
+// loadFile("image.png")
+//   .then((data) => {
+//     return data.toUpperCase();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log("Error", error);
+//   })
+//   .finally(() => {
+//     console.log("End");
+//   });
+
+//// якщо треба, щоб then виконувались паралельноб то функцію
+////треба покласти в змінну
+// const result = loadFile("photo.jpg");
+
+// result.then((data) => {
+//   console.log(data, 1);
+//   return null;
+// });
+
+// result.then((data) => {
+//   console.log(data, 2);
+//   return null;
+// });
+
+// result.then((data) => {
+//   console.log(data, 3);
+//   return null;
+// });
+
+///////
+
+// function loadFile(filename) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       console.log(2222);
+//       resolve(`Вміст файлу ${filename}`);
+//     }, 2000);
+//   });
+// }
+
+// function convertFile(content) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(`Конвертований вміст ${content.toUpperCase()}`);
+//     }, 1000);
+//   });
+// }
+
+// function saveFile(convertedContent) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve();
+//     }, 1500);
+//   });
+// }
+//// reject
+
+// function sendFileToClient() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       reject("error test");// видає тільки помилку при .all
+//       //resolve("ERROR")
+//     }, 500);
+//   });
+// }
+
+/// Promise.resolve()
+
+// function getInfoFromFile(file) {
+//   console.log(file, 11111);
+
+//   return Promise.resolve(file);
+// } // потім додаєм then
+
+//// Prommise.all    ///////////// функції не зв'язані між собою
+
+// Promise.all([
+//   loadFile("example.txt"),
+//   getInfoFromFile("example.txt"),
+//   saveFile(),
+//   sendFileToClient(),
+//   convertFile("file"),
+// ])
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+///     Promise.allSettled
+
+// Promise.allSettled([
+//   loadFile("example.txt"),
+//   getInfoFromFile("example.txt"),
+//   saveFile(),
+//   sendFileToClient(),
+//   convertFile("file"),
+// ])
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+//////  then
+// loadFile("example.txt")
+//   .then((content) => {
+//     console.log("Файл завантажено успішно");
+//     console.log("Вміст файлу:", content);
+//     return convertFile(content);
+//   })
+//   .then((data) => {
+//     return getInfoFromFile(data)
+//   })
+//   .then((convertedContent) => {
+//     console.log("Файл успішно зконвертовано");
+//     console.log("Конвертований зміст :", convertedContent);
+//     return saveFile(convertedContent);
+//   })
+//   .then(() => {
+//     console.log("Файл успішно збережено!");
+//     return sendFileToClient();
+//   })
+//   .catch((error) => {
+//     console.error("Сталася помилка", error);
+//   })
+//   .finally(() => {
+//     console.log("Файл успішно відправлено");
+//   });
+
+//////  async   await
+
+// function loadFile() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => resolve("Дані файлу"), 2000);
+//     });
+// }
+
+// function sendFileToData(fileData) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(true), 1500);
+//     });
+// }
+// // const loadAndSendFile = () =>
+// // loadFile()
+// // .then((data) => sendFileToData(data))
+// // .finally(() => console.log("Файл відправлен"))
+
+// const loadAndSendFile = async () => {
+//     try {
+//         const data = await loadFile();
+
+//         await sendFileToData(data);
+//         console.log("Файл відправлен");
+//     } catch (e) {
+//         console.log(e);
+//     }
+// };
+// loadAndSendFile();
+
+// loadAndSendFile().then(() => {
+
+//     console.log("end")
+// })
+
+//// HTTP -запит........./////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// const request = new Request("https://jsonplaceholder.typicode.com/todos/1", {
+//     method: "DELETE",
+// });
+// request.method = "POST"  так вже не змінить
+
+//console.log(request.method)
+//fetch(request);
+
+// або
+
+//
+// fetch("https://jsonplaceholder.typicode.com/todos/1",{
+//     method: "DELETE",
+// });
+
+// Властивості та вбуд. функції new Request....HTTP-Запит..........................
+//..............................................................
+
+// const data = {
+//     id: 1,
+//     name: "User",
+//     age: 50,
+// };
+
+// fetch("https://jsonplaceholder.typicode.com/todos/1", {
+//     method: "POST",
+//     body: JSON.stringify(data),
+
+//     headers: {
+//         "Content-Type": "application/json",
+//         Authorization: "Bearer your_token",
+//     }
+//     // отримання відповіді
+// }).then((res) => {
+//     console.log(res);
+// });
+
+/////  або
+
+// async function getData() {
+//     const res = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
+//         method: "POST",
+//         body: JSON.stringify(data),
+
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: "Bearer your_token",
+//         },
+//     });
+
+//     console.log(res);
+// }
+// getData();
+
+// цей запит вимагає метод GET та убрать body
+
+// async function getData() {
+//     const res = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
+//         method: "GET",
+//         // body: JSON.stringify(data),
+
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: "Bearer your_token",
+//         },
+//     });
+
+//     console.log(res.bodyUsed)
+
+//     const data = await res.json();
+//     //const data = await res.text();
+
+//     console.log(res.bodyUsed)
+
+//     console.log(data);
+
+//     console.log(res.status)
+// }
+// getData();
+
+///    або
+// async function getData() {
+//     const res = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: "Bearer your_token",
+//         },
+//     }).then((res) => res.json());
+//     console.log(res);
+// }
+// getData();
+
+//// Функції - генeратори  //// function*()   ////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+// function* myGenerator() {
+
+//     console.log("Start");
+//     yield 1;
+
+//     console.log("Start 2");
+//     yield 2;
+
+//     console.log("Start 3");
+//     yield 3;
+
+//     console.log("end");
+
+//     return 4;// 4 повернеться в якості value, без return
+//     //буде {value:undefined, done: true}
+
+// }
+// const generator = myGenerator();
+
+// const result1 = generator.next(); // next() запускає ф-ю генератор
+// console.log(result1);
+
+// const result2 = generator.next();
+// console.log(result2);
+
+// const result3 = generator.next();
+// console.log(result3);
+
+// const result4 = generator.next();
+// console.log(result4);
+
+/////  Функція, яка оброблює замовлення
+
+// function* processOrder(order) {
+//     yield validateOrder(order);
+//     yield processPayment(order);
+//     yield sendOrderConfirmation(order);
+
+//     return order;
+// }
+
+// function validateOrder(order) {
+//     const isValid = order.quantity > 0;
+//     return isValid;
+// }
+
+// function processPayment(order) {
+//     const isPaymentSuccessful = Math.random() < 0.5;
+//     return isPaymentSuccessful;
+// }
+// function sendOrderConfirmation() {
+//     const isConfirmationSent = true;
+//     return isConfirmationSent;
+// }
+// ///================
+// const order = { id: 123, product: "Товар", quantity: 2 };
+
+// const orderProcessing = processOrder(order);
+
+// ///=========================
+
+// //console.log(orderProcessing.next());
+// // console.log(orderProcessing.next());
+// // console.log(orderProcessing.next());
+// // console.log(orderProcessing.next());
+
+// //// варіант....
+
+// const isValidateOrder = orderProcessing.next().value;
+
+// if (isValidateOrder === false) {
+//     ///....................
+// }
+
+// //==========================
+
+// const isProcessPayment = orderProcessing.next();
+
+// if (isProcessPayment === false) {
+//     //......
+// }
+
+// //===============================
+
+// console.log(orderProcessing.next());
+// console.log(orderProcessing.next());
+
+////////////  for  ...   of  //////////////
+
+// function* generatorFunction() {
+//     yield "first value";
+//     yield "second value";
+//     return 3;
+// }
+
+// const generator = generatorFunction();
+
+// for (let value of generator) {
+//     // значення return сюди не входить
+//     console.log(value);
+// }
+
+//// генератор всередині іншого генератора  yield*
+
+// function* generatorOne() {
+//     yield "1 1";
+//     yield "1 2";
+//     return "1 3"; // не виведе
+// }
+
+// function* generatorTwo() {
+//     yield* generatorOne();
+//     yield "2 1";
+//     yield "2 2";
+// }
+
+// const generator = generatorTwo();
+
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+
+///  передача даних в генератор ....................
+
+// function* myGenerator() {
+//     const test = yield 1;
+
+//     console.log("test", test);
+//     //
+//     //
+//     const value = yield 2;
+//     //
+//     //
+//     yield 3;
+
+//     yield value;
+// }
+
+// const generator = myGenerator();
+
+// console.log(generator.next().value);
+// console.log(generator.next(4).value);
+// console.log(generator.next(4).value);
+// console.log(generator.next().value);
+
+//// дострокове завершення функції- генератора
+
+// function* myGenerator() {
+//     //
+//     //
+//     const test = yield 1;
+
+//     //return 10;
+
+//     console.log("test", test);
+//     //
+//     //
+//     const value = yield 2;
+//     //
+//     //
+//     yield 3;
+
+//     yield value;
+// }
+
+// const generator = myGenerator();
+
+// console.log(generator.next().value);
+
+// //console.log(generator.next());
+// // або
+// console.log(generator.return(100));
+
+// console.log(generator.next(4).value);
+// console.log(generator.next(4).value);
+// console.log(generator.next().value);
+
+//  виклик помилки ...................
+// function* myGenerator() {
+//     try {
+//         const test = yield 1;
+//         console.log("test", test);
+
+//         const value = yield 2;
+
+//         yield 3;
+
+//         yield value;
+//     } catch (e) {
+//         //console.log(e);
+//         yield 1000;
+//         yield 2000;
+//         yield 3000;
+//     } finally {
+//         yield 8000;
+//     }
+
+//     yield 15000;
+//     yield 33000;
+
+// }
+
+// const generator = myGenerator();
+
+// console.log(generator.next().value);
+
+// console.log(generator.throw(new Error()));
+
+// console.log(generator.next().value);
+// console.log(generator.next().value);
+// console.log(generator.next().value);
+// console.log(generator.next().value);
+// console.log(generator.next().value);
+
+///  асинхронні генератори  ..........async function*  await
+
+//const asyncFunc = () => new Promise((resolve) => setTimeout(resolve, 1000));
+
+// async function* asyncGenerator() {
+//     await asyncFunc();
+//     yield " After 1 second";
+
+//     await asyncFunc();
+//     yield " After 2 second";
+// }
+
+// async function runGenerator() {
+//     const generator = asyncGenerator();
+
+// console.log((await generator.next()).value);
+// console.log((await generator.next()).value);
+
+//  або
+
+// let result = null;
+
+// result = (await generator.next()).value;
+// console.log(result);
+
+// result = await generator.next();
+// console.log(result);
+
+// або
+
+//     for await (const result of generator) {
+//         console.log(result);
+
+//     }
+// }
+// runGenerator();
+
+/////  приклад
+////  Функція, яка симулює завантаження даних з сервера
+function fetchDataFromServer() {
+    return new Promise((resolve, reject) => {
+        // симулюємо асинхронний запит до сервера
+        setTimeout(() => {
+            const randomNumber = Math.random();
+            if (randomNumber < 0.7) {
+                resolve("Дані успішно завантажені");
+            } else {
+                reject("Помилка завантаження данних");
+            }
+        }, 1000);
+    });
+}
+
+// Функція для конвертації данних
+function convertData(data) {
+    return new Promise((resolve) => {
+        //Симулюємо асинхронну конвертацію данних
+        setTimeout(() => {
+            const convertedData = data.toUpperCase(); // приклад конвертації
+            resolve(convertedData);
+        }, 500);
+    });
+}
+
+//Генераторний метод, що використовує "yield" для послідовного
+//завантаження данних з сервера
+async function* fetchData() {
+    try {
+        yield "pending"; //повертаємо статус "pending"
+
+        const result = await fetchDataFromServer();// завантажуємо данні з сервера
+
+        const convertedData = await convertData(result);// конвертуємо данні
+        yield "success"; //повертаємо статус "convert"
+
+        return convertedData;// повертаємо конвертовані дані
+    } catch (error) {
+        yield "error";//повертаємо статус "error"
+    }
+}
+
+(async () => {
+    const generator = fetchData();
+
+    console.log(await generator.next());
+    console.log(await generator.next());
+    console.log(await generator.next());
+})();
