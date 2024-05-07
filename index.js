@@ -3871,52 +3871,52 @@
 
 /////  приклад
 ////  Функція, яка симулює завантаження даних з сервера
-function fetchDataFromServer() {
-    return new Promise((resolve, reject) => {
-        // симулюємо асинхронний запит до сервера
-        setTimeout(() => {
-            const randomNumber = Math.random();
-            if (randomNumber < 0.7) {
-                resolve("Дані успішно завантажені");
-            } else {
-                reject("Помилка завантаження данних");
-            }
-        }, 1000);
-    });
-}
+// function fetchDataFromServer() {
+//     return new Promise((resolve, reject) => {
+//         // симулюємо асинхронний запит до сервера
+//         setTimeout(() => {
+//             const randomNumber = Math.random();
+//             if (randomNumber < 0.7) {
+//                 resolve("Дані успішно завантажені");
+//             } else {
+//                 reject("Помилка завантаження данних");
+//             }
+//         }, 1000);
+//     });
+// }
 
-// Функція для конвертації данних
-function convertData(data) {
-    return new Promise((resolve) => {
-        //Симулюємо асинхронну конвертацію данних
-        setTimeout(() => {
-            const convertedData = data.toUpperCase(); // приклад конвертації
-            resolve(convertedData);
-        }, 500);
-    });
-}
+// // Функція для конвертації данних
+// function convertData(data) {
+//     return new Promise((resolve) => {
+//         //Симулюємо асинхронну конвертацію данних
+//         setTimeout(() => {
+//             const convertedData = data.toUpperCase(); // приклад конвертації
+//             resolve(convertedData);
+//         }, 500);
+//     });
+// }
 
-//Генераторний метод, що використовує "yield" для послідовного
-//завантаження данних з сервера
-async function* fetchData() {
-    try {
-        yield "pending"; //повертаємо статус "pending"
+// //Генераторний метод, що використовує "yield" для послідовного
+// //завантаження данних з сервера
+// async function* fetchData() {
+//     try {
+//         yield "pending"; //повертаємо статус "pending"
 
-        const result = await fetchDataFromServer();// завантажуємо данні з сервера
+//         const result = await fetchDataFromServer();// завантажуємо данні з сервера
 
-        const convertedData = await convertData(result);// конвертуємо данні
-        yield "success"; //повертаємо статус "convert"
+//         const convertedData = await convertData(result);// конвертуємо данні
+//         yield "success"; //повертаємо статус "convert"
 
-        return convertedData;// повертаємо конвертовані дані
-    } catch (error) {
-        yield "error";//повертаємо статус "error"
-    }
-}
+//         return convertedData;// повертаємо конвертовані дані
+//     } catch (error) {
+//         yield "error";//повертаємо статус "error"
+//     }
+// }
 
-(async () => {
-    const generator = fetchData();
+// (async () => {
+//     const generator = fetchData();
 
-    console.log(await generator.next());
-    console.log(await generator.next());
-    console.log(await generator.next());
-})();
+//     console.log(await generator.next());
+//     console.log(await generator.next());
+//     console.log(await generator.next());
+// })();
